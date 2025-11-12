@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Modern Brand - Product Page</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#333333",
+                        "background-light": "#F9F9F9",
+                        "background-dark": "#101c22",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#212121] dark:text-gray-200">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- TopNavBar Component -->
+<header class="sticky top-0 z-50 flex w-full justify-center border-b border-solid border-gray-200/80 dark:border-gray-700/80 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+<div class="flex items-center gap-4 flex-nowrap whitespace-nowrap px-4 sm:px-10 py-3 w-full max-w-7xl">
+<div class="flex items-center gap-6 flex-shrink-0">
+<div class="flex items-center gap-4">
+<div class="flex flex-col leading-tight uppercase">
+<a class="relative inline-flex items-center text-lg font-black tracking-[0.25em] text-[#111618] dark:text-white" href="/pages/home">
+<span class="inline-flex px-1.5 py-0.5 rounded-sm bg-[#111618] dark:bg-white text-white dark:text-[#111618] tracking-[0.2em] items-center leading-none h-5">SE</span>IRA
+<span class="absolute -bottom-1 -right-6 text-[10px] font-semibold tracking-normal lowercase text-gray-500 dark:text-gray-300">.com</span>
+</a>
+</div>
+</div>
+<nav class="hidden lg:flex items-center gap-6 text-sm font-semibold uppercase tracking-wide text-[#111618] ml-10">
+<a class="hover:text-primary transition-colors" href="/pages/products?category=men">Men</a>
+<a class="hover:text-primary transition-colors" href="/pages/products?category=women">Women</a>
+<a class="hover:text-primary transition-colors" href="/pages/products?category=kids">Kids</a>
+<a class="hover:text-primary transition-colors" href="#" data-shop-trigger role="button" aria-haspopup="dialog">Shop</a>
+<a class="hover:text-primary transition-colors" href="/pages/products">GENZ</a>
+<div class="flex items-center gap-1">
+<button class="hover:text-primary transition-colors" type="button" data-ai-search-trigger>AI Search</button>
+<span class="text-[10px] font-bold text-primary tracking-[0.2em] uppercase">New</span>
+</div>
+</nav>
+</div>
+<div class="hidden md:flex flex-1 justify-center sm:ml-6">
+<label class="flex flex-col min-w-[240px] !h-10 w-full max-w-xl">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full shadow-sm">
+<div class="text-[#617c89] dark:text-gray-400 flex bg-gray-200 dark:bg-gray-800 items-center justify-center pl-3 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined" style="font-size: 20px;">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111618] dark:text-white focus:outline-0 focus:ring-0 border-none bg-gray-200 dark:bg-gray-800 focus:border-none h-full placeholder:text-[#617c89] dark:placeholder:text-gray-400 px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search for products and more" value=""/>
+</div>
+</label>
+</div>
+<div class="flex gap-6 ml-auto text-[11px] font-semibold uppercase tracking-wide text-[#222222] dark:text-gray-200">
+<button class="flex flex-col items-center justify-center gap-1" data-profile-trigger>
+<span class="material-symbols-outlined text-xl">person</span>
+<span>Profile</span>
+</button>
+<a class="flex flex-col items-center justify-center gap-1" href="/pages/wishlist">
+<span class="material-symbols-outlined text-xl">favorite</span>
+<span>Wishlist</span>
+</a>
+<a class="relative flex flex-col items-center justify-center gap-1" href="/pages/cart">
+<span class="material-symbols-outlined text-xl">shopping_bag</span>
+<span>Bag</span>
+<span class="absolute top-0 right-1 rounded-full bg-primary text-white text-[10px] font-bold px-1" data-cart-count>0</span>
+</a>
+</div>
+</div>
+</header>
+<div id="profile-modal" class="fixed inset-0 z-[9999] hidden">
+  <div class="absolute inset-0 bg-black/60" data-profile-close></div>
+  <div class="relative max-w-sm w-full mx-auto mt-24 bg-white dark:bg-background-dark rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-800 overflow-hidden">
+    <div class="h-1 bg-primary"></div>
+    <div class="p-6 space-y-4">
+      <div class="flex items-start justify-between">
+        <div>
+          <p class="text-sm font-semibold text-gray-500 uppercase tracking-[0.2em]">Welcome</p>
+          <p class="text-base text-gray-600 dark:text-gray-300">To access account and manage orders</p>
+        </div>
+        <button class="text-gray-400 hover:text-primary" data-profile-close>
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <button class="w-full inline-flex items-center justify-center rounded-lg border border-primary text-primary font-bold uppercase tracking-[0.2em] py-2 hover:bg-primary/10 transition" type="button" data-simon-trigger>Login / Signup</button>
+      <div class="border-t border-gray-200 dark:border-gray-700 pt-4 grid grid-cols-2 gap-3 text-sm text-gray-700 dark:text-gray-300">
+        <span>Orders</span>
+        <span>Wishlist</span>
+        <span>Gift Cards</span>
+        <span>Contact Us</span>
+        <span class="flex items-center gap-2">Seira+ <span class="text-[10px] text-white bg-primary px-2 py-0.5 rounded-full uppercase">New</span></span>
+        <span>Seira Credit</span>
+        <span>Coupons</span>
+        <span>Saved Cards</span>
+        <span>Saved VPA</span>
+        <span>Saved Addresses</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main class="flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+<!-- Breadcrumbs Component -->
+<div class="flex flex-wrap gap-2 py-4">
+<a class="text-gray-500 dark:text-gray-400 text-sm font-medium leading-normal hover:text-primary dark:hover:text-white" href="/pages/home">Home</a>
+<span class="text-gray-400 dark:text-gray-500 text-sm font-medium leading-normal">/</span>
+<a class="text-gray-500 dark:text-gray-400 text-sm font-medium leading-normal hover:text-primary dark:hover:text-white" href="/pages/products">Products</a>
+<span class="text-gray-400 dark:text-gray-500 text-sm font-medium leading-normal">/</span>
+<span class="text-[#212121] dark:text-white text-sm font-medium leading-normal" data-product-breadcrumb>The Essential Linen Shirt</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 mt-4">
+<!-- Left Column: Image Gallery -->
+<div class="flex flex-col gap-4">
+<!-- HeaderImage (Main Display) Component -->
+<div class="w-full bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden bg-white rounded-lg aspect-[4/5] relative group">
+<img class="w-full h-full object-cover" data-alt="Woman wearing a white linen shirt outdoors" data-product-hero src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1200&q=80"/>
+<div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<div class="p-3 bg-white/80 rounded-full">
+<span class="material-symbols-outlined text-[#212121]" style="font-size: 32px;">zoom_in</span>
+</div>
+</div>
+</div>
+<!-- Carousel (Thumbnails) Component -->
+<div class="grid grid-cols-4 gap-4">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-lg flex flex-col border-2 border-primary" data-alt="Side view of the linen shirt"><img class="w-full h-full object-cover rounded-md" data-product-thumb="0" src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80"/></div>
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-lg flex flex-col" data-alt="Back view of the linen shirt"><img class="w-full h-full object-cover rounded-md" data-product-thumb="1" src="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=800&q=80"/></div>
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-lg flex flex-col" data-alt="Close-up of the linen fabric"><img class="w-full h-full object-cover rounded-md" data-product-thumb="2" src="https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=800&q=80"/></div>
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-lg flex flex-col" data-alt="Lifestyle shot of the shirt"><img class="w-full h-full object-cover rounded-md" data-product-thumb="3" src="https://images.unsplash.com/photo-1465129279398-b1b9d771d5d4?auto=format&fit=crop&w=800&q=80"/></div>
+</div>
+</div>
+<!-- Right Column: Product Information -->
+<div class="flex flex-col gap-6">
+<!-- PageHeading Component -->
+<h1 class="text-[#212121] dark:text-white text-3xl lg:text-4xl font-black leading-tight tracking-[-0.033em]" data-product-title>The Essential Linen Shirt</h1>
+<p class="text-3xl font-bold text-[#212121] dark:text-white" data-product-price>$120.00</p>
+<p class="text-gray-600 dark:text-gray-300 text-base leading-relaxed" data-product-description>Crafted from 100% premium European flax, our Essential Linen Shirt is a timeless staple for any wardrobe. Its breathable fabric and relaxed fit offer unparalleled comfort and effortless style.</p>
+<!-- Color Selector -->
+<div class="flex flex-col gap-3">
+<p class="text-sm font-bold text-[#212121] dark:text-white">Color: <span class="font-medium text-gray-500 dark:text-gray-400">Natural White</span></p>
+<div class="flex items-center gap-2">
+<button class="size-8 rounded-full bg-white border-2 border-primary" data-alt="Natural White color swatch"></button>
+<button class="size-8 rounded-full bg-blue-900 border-2 border-transparent hover:border-gray-400" data-alt="Navy color swatch"></button>
+<button class="size-8 rounded-full bg-stone-300 border-2 border-transparent hover:border-gray-400" data-alt="Oatmeal color swatch"></button>
+<button class="size-8 rounded-full bg-black border-2 border-transparent hover:border-gray-400" data-alt="Black color swatch"></button>
+</div>
+</div>
+<!-- Size Selector -->
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<p class="text-sm font-bold text-[#212121] dark:text-white">Size</p>
+<a class="text-sm font-medium text-primary hover:underline" href="/pages/products">Size Guide</a>
+</div>
+<select class="form-select w-full rounded-lg border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-[#212121] dark:text-white focus:ring-primary focus:border-primary" data-product-size-select>
+<option value="">Select Size</option>
+<option value="XS">XS</option>
+<option value="S">S</option>
+<option value="M">M</option>
+<option value="L">L</option>
+<option value="XL">XL</option>
+</select>
+</div>
+<!-- Action Buttons -->
+<div class="flex items-stretch gap-3 mt-4 flex-wrap">
+<a class="flex-1 flex min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 bg-primary text-white gap-2 text-base font-bold leading-normal tracking-[0.015em]" href="/pages/cart" data-add-to-cart>
+                                    Add to Cart
+                                </a>
+<a class="flex min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 bg-white border border-primary text-primary gap-2 text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/5 transition" href="/pages/bmi">
+<span class="material-symbols-outlined">smart_toy</span>
+Try On
+</a>
+<button class="flex w-12 h-12 cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700 text-[#212121] dark:text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em]" type="button" data-wishlist-toggle="detail" data-wishlist-source="detail" aria-pressed="false">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+<!-- Information Accordions -->
+<div class="flex flex-col divide-y divide-gray-200 dark:divide-gray-700 mt-6 border-t border-gray-200 dark:border-gray-700">
+<details class="group py-4">
+<summary class="flex cursor-pointer list-none items-center justify-between font-medium">
+                                       Product Details
+                                       <span class="transition group-open:rotate-180">
+<span class="material-symbols-outlined">expand_more</span>
+</span>
+</summary>
+<div class="mt-4 text-gray-600 dark:text-gray-300 space-y-2 text-sm">
+<ul class="list-disc pl-5">
+<li>100% Organic European Flax Linen</li>
+<li>Relaxed, comfortable fit</li>
+<li>Mother of pearl buttons</li>
+<li>Machine wash cold, tumble dry low</li>
+</ul>
+</div>
+</details>
+<details class="group py-4">
+<summary class="flex cursor-pointer list-none items-center justify-between font-medium">
+                                       Shipping &amp; Returns
+                                       <span class="transition group-open:rotate-180">
+<span class="material-symbols-outlined">expand_more</span>
+</span>
+</summary>
+<div class="mt-4 text-gray-600 dark:text-gray-300 text-sm">
+<p>Free shipping on orders over $50. Free returns within 30 days of purchase. Some exclusions apply.</p>
+</div>
+</details>
+</div>
+</div>
+</div>
+<!-- Customer Reviews Section -->
+<div class="mt-16 lg:mt-24 border-t border-gray-200 dark:border-gray-700 pt-12">
+<h2 class="text-2xl font-bold tracking-tight text-[#212121] dark:text-white">Customer Reviews</h2>
+<div class="flex flex-col md:flex-row gap-8 mt-6">
+<!-- Overall Rating -->
+<div class="flex flex-col items-center justify-center gap-2 p-8 rounded-lg bg-white dark:bg-gray-800/50 w-full md:w-1/3">
+<p class="text-5xl font-black text-[#212121] dark:text-white">4.8</p>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-yellow-500" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-yellow-500" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-yellow-500" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-yellow-500" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-yellow-500" style="font-variation-settings: 'FILL' 1">star_half</span>
+</div>
+<p class="text-sm text-gray-500 dark:text-gray-400">Based on 142 reviews</p>
+</div>
+<!-- Rating Breakdown -->
+<div class="w-full md:w-2/3 flex flex-col gap-2">
+<div class="flex items-center gap-2 text-sm"><span class="w-12 text-gray-500 dark:text-gray-400">5 star</span> <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div class="bg-yellow-500 h-2 rounded-full" style="width: 85%"></div></div> <span class="w-10 text-right text-gray-500 dark:text-gray-400">120</span></div>
+<div class="flex items-center gap-2 text-sm"><span class="w-12 text-gray-500 dark:text-gray-400">4 star</span> <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div class="bg-yellow-500 h-2 rounded-full" style="width: 10%"></div></div> <span class="w-10 text-right text-gray-500 dark:text-gray-400">15</span></div>
+<div class="flex items-center gap-2 text-sm"><span class="w-12 text-gray-500 dark:text-gray-400">3 star</span> <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div class="bg-yellow-500 h-2 rounded-full" style="width: 5%"></div></div> <span class="w-10 text-right text-gray-500 dark:text-gray-400">7</span></div>
+<div class="flex items-center gap-2 text-sm"><span class="w-12 text-gray-500 dark:text-gray-400">2 star</span> <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div class="bg-yellow-500 h-2 rounded-full" style="width: 0%"></div></div> <span class="w-10 text-right text-gray-500 dark:text-gray-400">0</span></div>
+<div class="flex items-center gap-2 text-sm"><span class="w-12 text-gray-500 dark:text-gray-400">1 star</span> <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div class="bg-yellow-500 h-2 rounded-full" style="width: 0%"></div></div> <span class="w-10 text-right text-gray-500 dark:text-gray-400">0</span></div>
+</div>
+</div>
+<!-- Individual Reviews -->
+<div class="mt-10 space-y-8">
+<div class="flex flex-col gap-3 border-b border-gray-200 dark:border-gray-700 pb-8">
+<div class="flex items-center gap-2">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-yellow-500" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-yellow-500" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-yellow-500" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-yellow-500" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-yellow-500" style="font-variation-settings: 'FILL' 1">star</span>
+</div>
+</div>
+<p class="font-bold">Absolutely perfect!</p>
+<p class="text-gray-600 dark:text-gray-300 text-sm">This is my new favorite shirt. The linen is so soft and breathable, and the fit is just right – relaxed but not sloppy. I've already worn it three times this week!</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">Jane D. on June 15, 2024</p>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-2">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-yellow-500" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-yellow-500" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-yellow-500" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-yellow-500" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-gray-400">star</span>
+</div>
+</div>
+<p class="font-bold">Great quality, a bit oversized.</p>
+<p class="text-gray-600 dark:text-gray-300 text-sm">The quality of the linen is fantastic. It feels very high-end. I would say it runs a bit large, so consider sizing down if you want a more fitted look. Otherwise, it's a beautiful shirt.</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">Sarah K. on June 12, 2024</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const sizeSelect = document.querySelector('[data-product-size-select]');
+  const getSelectedSize = () => {
+    if (!sizeSelect) return '';
+    const value = sizeSelect.value;
+    if (!value || value === 'Select Size') return '';
+    const label = sizeSelect.options[sizeSelect.selectedIndex]?.textContent?.trim();
+    return label || value;
+  };
+
+  const stored = localStorage.getItem('selectedProduct');
+  let productData;
+  try {
+    productData = stored ? JSON.parse(stored) : null;
+  } catch (error) {
+    console.warn('Unable to parse stored product data', error);
+  }
+
+  const fallbackGallery = Array.from(document.querySelectorAll('[data-product-thumb]')).map((img) => img.getAttribute('src'));
+  const fallbackProduct = {
+    id: 'seira-product',
+    title: document.querySelector('[data-product-title]')?.textContent?.trim() || 'Seira Exclusive',
+    price: document.querySelector('[data-product-price]')?.textContent?.trim() || '$0.00',
+    description: document.querySelector('[data-product-description]')?.textContent?.trim() || '',
+    image: document.querySelector('[data-product-hero]')?.getAttribute('src') || '',
+    gallery: fallbackGallery,
+    size: getSelectedSize(),
+  };
+
+  const resolvedProduct = Object.assign({}, fallbackProduct, productData || {});
+  const { title, price, description, image, gallery = [] } = resolvedProduct;
+
+  if (title) {
+    document.querySelectorAll('[data-product-title]').forEach((node) => {
+      node.textContent = title;
+    });
+    document.querySelectorAll('[data-product-breadcrumb]').forEach((node) => {
+      node.textContent = title;
+    });
+  }
+
+  if (price) {
+    document.querySelectorAll('[data-product-price]').forEach((node) => {
+      node.textContent = price;
+    });
+  }
+
+  if (description) {
+    document.querySelectorAll('[data-product-description]').forEach((node) => {
+      node.textContent = description;
+    });
+  }
+
+  const persistSelectedProduct = (payload) => {
+    if (!payload) return;
+    try {
+      localStorage.setItem('selectedProduct', JSON.stringify(payload));
+    } catch (error) {
+      console.warn('Unable to persist selected product', error);
+    }
+  };
+
+  const galleryImages = Array.isArray(gallery) && gallery.length ? gallery : (image ? [image] : fallbackGallery);
+  const heroImage = document.querySelector('[data-product-hero]');
+  if (heroImage && (image || galleryImages[0])) {
+    heroImage.src = image || galleryImages[0];
+  }
+
+  const thumbEls = document.querySelectorAll('[data-product-thumb]');
+  galleryImages.forEach((imgSrc, index) => {
+    if (thumbEls[index] && imgSrc) {
+      thumbEls[index].src = imgSrc;
+    }
+  });
+
+  window.SeiraCurrentProduct = {
+    ...resolvedProduct,
+    size: getSelectedSize() || resolvedProduct.size || '',
+    priceValue: (window.SeiraCartIndicator?.parsePriceValue?.(resolvedProduct.priceValue ?? resolvedProduct.price)) || 0,
+  };
+
+  const syncSelectedProductStorage = () => {
+    if (!window.SeiraCurrentProduct) return;
+    const payload = {
+      ...window.SeiraCurrentProduct,
+      gallery: galleryImages,
+      image: heroImage?.getAttribute('src') || window.SeiraCurrentProduct.image || '',
+      price: window.SeiraCurrentProduct.price || price,
+      priceText: window.SeiraCurrentProduct.price || price,
+    };
+    persistSelectedProduct(payload);
+  };
+
+  syncSelectedProductStorage();
+
+  if (sizeSelect) {
+    sizeSelect.addEventListener('change', () => {
+      window.SeiraCurrentProduct = {
+        ...window.SeiraCurrentProduct,
+        size: getSelectedSize(),
+      };
+      syncSelectedProductStorage();
+    });
+  }
+
+  const addToCartBtn = document.querySelector('[data-add-to-cart]');
+  if (addToCartBtn) {
+    addToCartBtn.addEventListener('click', (event) => {
+      event.preventDefault();
+      const selectedSize = getSelectedSize();
+      if (!selectedSize) {
+        alert('Please select a size before adding to cart.');
+        return;
+      }
+      const payload = Object.assign({}, window.SeiraCurrentProduct, {
+        quantity: 1,
+        priceText: window.SeiraCurrentProduct.price || window.SeiraCurrentProduct.priceText || '$0.00',
+        size: selectedSize,
+        variant: `size-${selectedSize}`,
+      });
+      if (window.SeiraCartIndicator?.addItem) {
+        window.SeiraCartIndicator.addItem(payload);
+      } else {
+        // Fallback manual persistence
+        try {
+          const existing = JSON.parse(localStorage.getItem('cartItems') || '[]');
+          existing.push(payload);
+          localStorage.setItem('cartItems', JSON.stringify(existing));
+        } catch (error) {
+          console.warn('Unable to add item to cart', error);
+        }
+      }
+      const targetHref = addToCartBtn.getAttribute('href') || '/pages/cart';
+      window.location.href = targetHref;
+    });
+  }
+});
+</script>
+<script src="/static/js/cart-indicator.js"></script>
+<script src="/static/js/ai-search-modal.js"></script>
+<script src="/static/js/shop-modal.js"></script>
+<script src="/static/js/wishlist.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const profileModal = document.getElementById('profile-modal');
+  const toggleProfileModal = (shouldShow) => {
+    if (!profileModal) return;
+    profileModal.classList.toggle('hidden', !shouldShow);
+    document.body.classList.toggle('overflow-hidden', shouldShow);
+  };
+
+  document.querySelectorAll('[data-profile-trigger]').forEach((btn) => {
+    btn.addEventListener('click', () => toggleProfileModal(true));
+  });
+
+  profileModal?.querySelectorAll('[data-profile-close]').forEach((btn) => {
+    btn.addEventListener('click', () => toggleProfileModal(false));
+  });
+});
+</script>
+</body></html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Shopping Cart</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#2C5F2D", // Forest Green for primary CTAs as requested
+              "background-light": "#f6f7f8",
+              "background-dark": "#101c22",
+              "neutral-text": "#333333",
+              "subtle-gray": "#F5F5F5",
+              "remove-red": "#D9534F"
+            },
+            fontFamily: {
+              "display": ["Plus Jakarta Sans", "Noto Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-neutral-text dark:text-gray-200" data-page="cart">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<!-- TopNavBar Component -->
+<header class="sticky top-0 z-50 flex w-full justify-center border-b border-solid border-gray-200/80 dark:border-gray-700/80 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+<div class="flex items-center gap-4 flex-nowrap whitespace-nowrap px-4 sm:px-10 py-3 w-full max-w-7xl">
+<div class="flex items-center gap-6 flex-shrink-0">
+<div class="flex items-center gap-4">
+<div class="flex flex-col leading-tight uppercase">
+<a class="relative inline-flex items-center text-lg font-black tracking-[0.25em] text-[#111618] dark:text-white" href="/pages/home">
+<span class="inline-flex px-1.5 py-0.5 rounded-sm bg-[#111618] dark:bg-white text-white dark:text-[#111618] tracking-[0.2em] items-center leading-none h-5">SE</span>IRA
+<span class="absolute -bottom-1 -right-6 text-[10px] font-semibold tracking-normal lowercase text-gray-500 dark:text-gray-300">.com</span>
+</a>
+</div>
+</div>
+<nav class="hidden lg:flex items-center gap-6 text-sm font-semibold uppercase tracking-wide text-[#111618] ml-10">
+<a class="hover:text-primary transition-colors" href="/pages/products?category=men">Men</a>
+<a class="hover:text-primary transition-colors" href="/pages/products?category=women">Women</a>
+<a class="hover:text-primary transition-colors" href="/pages/products?category=kids">Kids</a>
+<a class="hover:text-primary transition-colors" href="#" data-shop-trigger role="button" aria-haspopup="dialog">Shop</a>
+<a class="hover:text-primary transition-colors" href="/pages/products">GENZ</a>
+<div class="flex items-center gap-1">
+<button class="hover:text-primary transition-colors" type="button" data-ai-search-trigger>AI Search</button>
+<span class="text-[10px] font-bold text-primary tracking-[0.2em] uppercase">New</span>
+</div>
+</nav>
+</div>
+<div class="hidden md:flex flex-1 justify-center sm:ml-6">
+<label class="flex flex-col min-w-[240px] !h-10 w-full max-w-xl">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full shadow-sm">
+<div class="text-[#617c89] dark:text-gray-400 flex bg-gray-200 dark:bg-gray-800 items-center justify-center pl-3 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined" style="font-size: 20px;">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111618] dark:text-white focus:outline-0 focus:ring-0 border-none bg-gray-200 dark:bg-gray-800 focus:border-none h-full placeholder:text-[#617c89] dark:placeholder:text-gray-400 px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search for products and more" value=""/>
+</div>
+</label>
+</div>
+<div class="flex gap-6 ml-auto text-[11px] font-semibold uppercase tracking-wide text-[#222222] dark:text-gray-200">
+<button class="flex flex-col items-center justify-center gap-1" data-profile-trigger>
+<span class="material-symbols-outlined text-xl">person</span>
+<span>Profile</span>
+</button>
+<a class="flex flex-col items-center justify-center gap-1" href="/pages/wishlist">
+<span class="material-symbols-outlined text-xl">favorite</span>
+<span>Wishlist</span>
+</a>
+<a class="relative flex flex-col items-center justify-center gap-1" href="/pages/cart">
+<span class="material-symbols-outlined text-xl">shopping_bag</span>
+<span>Bag</span>
+<span class="absolute top-0 right-1 rounded-full bg-primary text-white text-[10px] font-bold px-1" data-cart-count>0</span>
+</a>
+</div>
+</div>
+</header>
+<div id="profile-modal" class="fixed inset-0 z-[9999] hidden">
+<div class="absolute inset-0 bg-black/60" data-profile-close></div>
+<div class="relative max-w-sm w-full mx-auto mt-24 bg-white dark:bg-background-dark rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-800 overflow-hidden">
+<div class="h-1 bg-primary"></div>
+<div class="p-6 space-y-4">
+<div class="flex items-start justify-between">
+<div>
+<p class="text-sm font-semibold text-gray-500 uppercase tracking-[0.2em]">Welcome</p>
+<p class="text-base text-gray-600 dark:text-gray-300">To access account and manage orders</p>
+</div>
+<button class="text-gray-400 hover:text-primary" data-profile-close>
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<button class="w-full inline-flex items-center justify-center rounded-lg border border-primary text-primary font-bold uppercase tracking-[0.2em] py-2 hover:bg-primary/10 transition" type="button" data-simon-trigger>Login / Signup</button>
+<div class="border-t border-gray-200 dark:border-gray-700 pt-4 grid grid-cols-2 gap-3 text-sm text-gray-700 dark:text-gray-300">
+<span>Orders</span>
+<span>Wishlist</span>
+<span>Gift Cards</span>
+<span>Contact Us</span>
+<span class="flex items-center gap-2">Seira+ <span class="text-[10px] text-white bg-primary px-2 py-0.5 rounded-full uppercase">New</span></span>
+<span>Seira Credit</span>
+<span>Coupons</span>
+<span>Saved Cards</span>
+<span>Saved VPA</span>
+<span>Saved Addresses</span>
+</div>
+</div>
+</div>
+</div>
+
+<main class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+<div class="flex flex-col gap-8">
+<!-- Breadcrumbs and Page Heading -->
+<div class="flex flex-col gap-4">
+<!-- Breadcrumbs Component -->
+<div class="flex flex-wrap gap-2">
+<a class="text-gray-500 dark:text-gray-400 text-sm font-medium leading-normal" href="/pages/home">Home</a>
+<span class="text-gray-500 dark:text-gray-400 text-sm font-medium leading-normal">/</span>
+<a class="text-gray-500 dark:text-gray-400 text-sm font-medium leading-normal" href="/pages/products">Products</a>
+<span class="text-gray-500 dark:text-gray-400 text-sm font-medium leading-normal">/</span>
+<span class="text-neutral-text dark:text-gray-200 text-sm font-medium leading-normal">Shopping Bag</span>
+</div>
+<!-- PageHeading Component -->
+<div class="flex flex-wrap justify-between gap-3"><p class="text-4xl font-black leading-tight tracking-[-0.033em] min-w-72">Shopping Bag</p></div>
+</div>
+<!-- Main Content: Cart Items and Summary -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+<!-- Left Column: Item List -->
+<div class="lg:col-span-2 flex flex-col gap-4">
+<div id="cart-empty" class="bg-white dark:bg-background-dark/50 rounded-lg shadow-sm p-8 flex flex-col items-center text-center gap-4" data-cart-count-value="0">
+<span class="material-symbols-outlined text-4xl text-gray-400">shopping_bag</span>
+<p class="text-lg font-semibold">Your bag is empty</p>
+<p class="text-sm text-gray-500 dark:text-gray-400">Browse our collections and add items you love to see them here.</p>
+<a class="inline-flex items-center justify-center rounded-lg h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-wide" href="/pages/products">Shop the latest</a>
+</div>
+<div id="cart-list" class="bg-white dark:bg-background-dark/50 rounded-lg shadow-sm flex flex-col divide-y divide-gray-200 dark:divide-gray-700 hidden"></div>
+</div>
+<!-- Right Column: Order Summary -->
+<div class="lg:col-span-1">
+<div class="bg-subtle-gray dark:bg-background-dark/50 p-6 rounded-lg shadow-sm flex flex-col gap-6 sticky top-8">
+<h3 class="text-xl font-bold">Order Summary</h3>
+<div class="flex flex-col gap-3 border-b border-gray-300 dark:border-gray-600 pb-4">
+<div class="flex justify-between text-base">
+<span class="text-gray-600 dark:text-gray-300">Subtotal</span>
+<span class="font-medium" data-cart-subtotal>$0.00</span>
+</div>
+<div class="flex justify-between text-base">
+<span class="text-gray-600 dark:text-gray-300">Estimated Shipping</span>
+<span class="font-medium" data-cart-shipping>$0.00</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between text-lg font-bold">
+<span>Total</span>
+<span data-cart-total>$0.00</span>
+</div>
+<p class="text-xs text-gray-500 dark:text-gray-400">Add products to estimate shipping and taxes.</p>
+</div>
+<div class="flex flex-col gap-4">
+<button class="w-full flex items-center justify-center rounded-lg h-12 bg-gray-300 text-gray-500 text-base font-bold leading-normal tracking-wide cursor-not-allowed" disabled data-checkout-btn>Proceed to Checkout</button>
+<a class="w-full flex items-center justify-center rounded-lg h-12 bg-primary text-white text-base font-bold leading-normal tracking-wide" href="/pages/products">Continue Shopping</a>
+</div>
+<div class="flex items-center justify-center gap-2 text-gray-500 dark:text-gray-400 text-sm">
+<span class="material-symbols-outlined !text-base">lock</span>
+<span>Secure Checkout</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<div id="cart-login-modal" class="fixed inset-0 z-[9998] hidden">
+<div class="absolute inset-0 bg-black/60" data-cart-login-close></div>
+<div class="relative max-w-md w-full mx-auto mt-24 bg-white dark:bg-background-dark rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-800 overflow-hidden">
+<div class="h-1 bg-primary"></div>
+<div class="p-6 space-y-4">
+<div class="flex items-start justify-between">
+<div>
+<p class="text-sm font-semibold text-gray-500 uppercase tracking-[0.3em]">Welcome</p>
+<p class="text-base text-gray-600 dark:text-gray-300">To access account and manage orders</p>
+</div>
+<button class="text-gray-400 hover:text-primary" data-cart-login-close type="button">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<button class="w-full inline-flex items-center justify-center rounded-lg border border-primary text-primary font-bold uppercase tracking-[0.2em] py-2 hover:bg-primary/10 transition" type="button" data-simon-trigger>Login / Signup</button>
+<div class="border-t border-gray-200 dark:border-gray-700 pt-4 grid grid-cols-2 gap-3 text-sm text-gray-700 dark:text-gray-300">
+<span>Orders</span>
+<span>Wishlist</span>
+<span>Gift Cards</span>
+<span>Contact Us</span>
+<span class="flex items-center gap-2">Seira Insider <span class="text-[10px] text-white bg-primary px-2 py-0.5 rounded-full uppercase">New</span></span>
+<span>Seira Credit</span>
+<span>Coupons</span>
+<span>Saved Cards</span>
+<span>Saved VPA</span>
+<span>Saved Addresses</span>
+</div>
+</div>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const store = window.SeiraCartIndicator;
+  const listEl = document.getElementById('cart-list');
+  const emptyStateEl = document.getElementById('cart-empty');
+  const subtotalEl = document.querySelector('[data-cart-subtotal]');
+  const shippingEl = document.querySelector('[data-cart-shipping]');
+  const totalEl = document.querySelector('[data-cart-total]');
+  const checkoutBtn = document.querySelector('[data-checkout-btn]');
+  const SHIPPING_FEE = 5;
+  const loginModal = document.getElementById('cart-login-modal');
+
+  const formatCurrency = (value) => `$${(Number(value) || 0).toFixed(2)}`;
+
+  const updateCheckoutState = (hasItems) => {
+    if (!checkoutBtn) return;
+    if (hasItems) {
+      checkoutBtn.disabled = false;
+      checkoutBtn.classList.remove('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
+      checkoutBtn.classList.add('bg-primary', 'text-white');
+    } else {
+      checkoutBtn.disabled = true;
+      checkoutBtn.classList.add('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
+      checkoutBtn.classList.remove('bg-primary', 'text-white');
+    }
+  };
+
+  const buildItemRow = (item) => {
+    const row = document.createElement('div');
+    row.className = 'flex gap-4 p-4 justify-between items-start';
+    row.dataset.cartRow = 'true';
+    row.dataset.itemKey = item.key || item.id;
+    const imageStyle = item.image ? `background-image: url('${item.image}')` : '';
+    const sizeLine = item.size ? `<p class="text-gray-600 dark:text-gray-300 text-sm">Size: <span class="font-medium">${item.size}</span></p>` : '';
+    const description = item.description ? `<p class="text-gray-500 dark:text-gray-400 text-sm">${item.description}</p>` : '';
+    const priceText = item.priceText || formatCurrency(item.priceValue);
+    const lineTotal = (item.priceValue || 0) * (item.quantity || 1);
+    row.innerHTML = `
+      <div class="flex items-start gap-4">
+        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-[80px] border border-gray-100 dark:border-gray-700" style="${imageStyle}"></div>
+        <div class="flex flex-1 flex-col justify-center gap-1">
+          <p class="text-base font-medium leading-normal">${item.title || 'Seira Exclusive'}</p>
+          ${sizeLine}
+          ${description}
+          <p class="text-sm text-gray-500 dark:text-gray-400">${priceText}</p>
+          <p class="text-sm text-gray-500 dark:text-gray-400">Line total: <span class="font-medium text-[#111618] dark:text-gray-100">${formatCurrency(lineTotal)}</span></p>
+          <button class="text-remove-red text-xs font-medium w-fit mt-1 flex items-center gap-1" data-cart-action="remove">
+            <span class="material-symbols-outlined !text-sm">delete</span>Remove
+          </button>
+        </div>
+      </div>
+      <div class="shrink-0 flex items-center gap-2 text-neutral-text dark:text-gray-200">
+        <button class="text-base font-medium leading-normal flex h-7 w-7 items-center justify-center rounded-full bg-subtle-gray dark:bg-gray-800 cursor-pointer" data-cart-action="decrement">-</button>
+        <span class="text-base font-medium leading-normal min-w-[24px] text-center">${item.quantity || 1}</span>
+        <button class="text-base font-medium leading-normal flex h-7 w-7 items-center justify-center rounded-full bg-subtle-gray dark:bg-gray-800 cursor-pointer" data-cart-action="increment">+</button>
+      </div>
+    `;
+    return row;
+  };
+
+  const renderCart = () => {
+    const items = store?.getItems?.() || [];
+    const hasItems = items.length > 0;
+    emptyStateEl.classList.toggle('hidden', hasItems);
+    listEl.classList.toggle('hidden', !hasItems);
+    listEl.innerHTML = '';
+
+    if (hasItems) {
+      const fragment = document.createDocumentFragment();
+      items.forEach((item) => fragment.appendChild(buildItemRow(item)));
+      listEl.appendChild(fragment);
+    }
+
+    const subtotal = items.reduce((sum, item) => {
+      const qty = Number(item.quantity) || 1;
+      const price = Number(item.priceValue) || 0;
+      return sum + qty * price;
+    }, 0);
+    const shipping = hasItems ? SHIPPING_FEE : 0;
+    const total = subtotal + shipping;
+
+    if (subtotalEl) subtotalEl.textContent = formatCurrency(subtotal);
+    if (shippingEl) shippingEl.textContent = formatCurrency(shipping);
+    if (totalEl) totalEl.textContent = formatCurrency(total);
+    updateCheckoutState(hasItems);
+  };
+
+  const adjustQuantity = (key, delta) => {
+    if (!key || !store?.updateItemQuantity) return;
+    const items = store.getItems();
+    const target = items.find((item) => (item.key || item.id) === key);
+    if (!target) return;
+    const nextQuantity = (target.quantity || 1) + delta;
+    if (nextQuantity <= 0) {
+      store.removeItem(key);
+    } else {
+      store.updateItemQuantity(key, nextQuantity);
+    }
+    renderCart();
+  };
+
+  listEl.addEventListener('click', (event) => {
+    const actionButton = event.target.closest('[data-cart-action]');
+    if (!actionButton) return;
+    const row = actionButton.closest('[data-cart-row]');
+    const key = row?.dataset?.itemKey;
+    if (!key) return;
+    const action = actionButton.dataset.cartAction;
+    if (action === 'increment') {
+      adjustQuantity(key, 1);
+    } else if (action === 'decrement') {
+      adjustQuantity(key, -1);
+    } else if (action === 'remove') {
+      store?.removeItem?.(key);
+      renderCart();
+    }
+  });
+
+  renderCart();
+
+  const toggleLoginModal = (shouldShow) => {
+    if (!loginModal) return;
+    loginModal.classList.toggle('hidden', !shouldShow);
+    document.body.classList.toggle('overflow-hidden', shouldShow);
+  };
+
+  checkoutBtn?.addEventListener('click', (event) => {
+    if (checkoutBtn.disabled) return;
+    event.preventDefault();
+    toggleLoginModal(true);
+  });
+
+  loginModal?.querySelectorAll('[data-cart-login-close]').forEach((btn) => {
+    btn.addEventListener('click', () => toggleLoginModal(false));
+  });
+});
+</script>
+<script src="/static/js/cart-indicator.js"></script>
+<script src="/static/js/ai-search-modal.js"></script>
+<script src="/static/js/shop-modal.js"></script>
+<script src="/static/js/simon-modal.js"></script>
+<script src="/static/js/wishlist.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const profileModal = document.getElementById('profile-modal');
+  const toggleProfileModal = (shouldShow) => {
+    if (!profileModal) return;
+    profileModal.classList.toggle('hidden', !shouldShow);
+    document.body.classList.toggle('overflow-hidden', shouldShow);
+  };
+
+  document.querySelectorAll('[data-profile-trigger]').forEach((btn) => {
+    btn.addEventListener('click', () => toggleProfileModal(true));
+  });
+
+  profileModal?.querySelectorAll('[data-profile-close]').forEach((btn) => {
+    btn.addEventListener('click', () => toggleProfileModal(false));
+  });
+});
+</script>
+</body></html>

@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Seira - Product Listing</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#333333",
+                        "background-light": "#F9F9F9",
+                        "background-dark": "#101c22",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-stone-900 dark:text-stone-100" data-page="products">
+<div class="relative flex h-auto min-h-screen w-full flex-col">
+<header class="sticky top-0 z-50 flex w-full justify-center border-b border-solid border-gray-200/80 dark:border-gray-700/80 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+<div class="flex items-center gap-4 flex-nowrap whitespace-nowrap px-4 sm:px-10 py-3 w-full max-w-7xl">
+<div class="flex items-center gap-6 flex-shrink-0">
+<div class="flex items-center gap-4">
+<div class="flex flex-col leading-tight uppercase">
+<a class="relative inline-flex items-center text-lg font-black tracking-[0.25em] text-[#111618] dark:text-white" href="/pages/home">
+<span class="inline-flex px-1.5 py-0.5 rounded-sm bg-[#111618] dark:bg-white text-white dark:text-[#111618] tracking-[0.2em] items-center leading-none h-5">SE</span>IRA
+<span class="absolute -bottom-1 -right-6 text-[10px] font-semibold tracking-normal lowercase text-gray-500 dark:text-gray-300">.com</span>
+</a>
+</div>
+</div>
+<nav class="hidden lg:flex items-center gap-6 text-sm font-semibold uppercase tracking-wide text-[#111618] ml-10">
+<a class="hover:text-primary transition-colors" href="/pages/products?category=men">Men</a>
+<a class="hover:text-primary transition-colors" href="/pages/products?category=women">Women</a>
+<a class="hover:text-primary transition-colors" href="/pages/products?category=kids">Kids</a>
+<a class="hover:text-primary transition-colors" href="#" data-shop-trigger role="button" aria-haspopup="dialog">Shop</a>
+<a class="hover:text-primary transition-colors" href="/pages/products">GENZ</a>
+<div class="flex items-center gap-1">
+<button class="hover:text-primary transition-colors" type="button" data-ai-search-trigger>AI Search</button>
+<span class="text-[10px] font-bold text-primary tracking-[0.2em] uppercase">New</span>
+</div>
+</nav>
+</div>
+<div class="hidden md:flex flex-1 justify-center sm:ml-6">
+<label class="flex flex-col min-w-[240px] !h-10 w-full max-w-xl">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full shadow-sm">
+<div class="text-[#617c89] dark:text-gray-400 flex bg-gray-200 dark:bg-gray-800 items-center justify-center pl-3 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined" style="font-size: 20px;">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111618] dark:text-white focus:outline-0 focus:ring-0 border-none bg-gray-200 dark:bg-gray-800 focus:border-none h-full placeholder:text-[#617c89] dark:placeholder:text-gray-400 px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search for products and more" value=""/>
+</div>
+</label>
+</div>
+<div class="flex gap-6 ml-auto text-[11px] font-semibold uppercase tracking-wide text-[#222222] dark:text-gray-200">
+<button class="flex flex-col items-center justify-center gap-1" data-profile-trigger>
+<span class="material-symbols-outlined text-xl">person</span>
+<span>Profile</span>
+</button>
+<a class="flex flex-col items-center justify-center gap-1" href="/pages/wishlist">
+<span class="material-symbols-outlined text-xl">favorite</span>
+<span>Wishlist</span>
+</a>
+<a class="relative flex flex-col items-center justify-center gap-1" href="/pages/cart">
+<span class="material-symbols-outlined text-xl">shopping_bag</span>
+<span>Bag</span>
+<span class="absolute top-0 right-1 rounded-full bg-primary text-white text-[10px] font-bold px-1" data-cart-count>0</span>
+</a>
+</div>
+</div>
+</header>
+<div id="profile-modal" class="fixed inset-0 z-[9999] hidden">
+<div class="absolute inset-0 bg-black/60" data-profile-close></div>
+<div class="relative max-w-sm w-full mx-auto mt-24 bg-white dark:bg-background-dark rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-800 overflow-hidden">
+<div class="h-1 bg-primary"></div>
+<div class="p-6 space-y-4">
+<div class="flex items-start justify-between">
+<div>
+<p class="text-sm font-semibold text-gray-500 uppercase tracking-[0.2em]">Welcome</p>
+<p class="text-base text-gray-600 dark:text-gray-300">To access account and manage orders</p>
+</div>
+<button class="text-gray-400 hover:text-primary" data-profile-close>
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<button class="w-full inline-flex items-center justify-center rounded-lg border border-primary text-primary font-bold uppercase tracking-[0.2em] py-2 hover:bg-primary/10 transition" type="button" data-simon-trigger>Login / Signup</button>
+<div class="border-t border-gray-200 dark:border-gray-700 pt-4 grid grid-cols-2 gap-3 text-sm text-gray-700 dark:text-gray-300">
+<span>Orders</span>
+<span>Wishlist</span>
+<span>Gift Cards</span>
+<span>Contact Us</span>
+<span class="flex items-center gap-2">Seira+ <span class="text-[10px] text-white bg-primary px-2 py-0.5 rounded-full uppercase">New</span></span>
+<span>Seira Credit</span>
+<span>Coupons</span>
+<span>Saved Cards</span>
+<span>Saved VPA</span>
+<span>Saved Addresses</span>
+</div>
+</div>
+</div>
+</div>
+<main class="flex flex-col lg:flex-row gap-8 px-4 sm:px-8 py-12 max-w-7xl mx-auto w-full">
+<aside class="w-full lg:w-1/4 xl:w-1/5 bg-white dark:bg-background-dark rounded-3xl shadow-sm border border-stone-200 dark:border-stone-800 p-6 space-y-6">
+  <div class="flex items-center justify-between">
+    <h2 class="text-xl font-bold">Filters</h2>
+    <button class="text-sm font-semibold text-pink-500 hover:text-pink-600">Clear All</button>
+  </div>
+  <div class="flex flex-col border-b border-stone-200 dark:border-stone-800 pb-4">
+    <h3 class="text-lg font-semibold uppercase tracking-[0.2em] text-stone-700 dark:text-stone-200">Filters</h3>
+    <div class="mt-3 flex flex-col gap-2 text-sm text-stone-700 dark:text-stone-200">
+      <label class="flex items-center gap-3"><input class="accent-pink-500" name="filter-gender" checked type="radio"/>Men</label>
+      <label class="flex items-center gap-3"><input class="accent-pink-500" name="filter-gender" type="radio"/>Women</label>
+      <label class="flex items-center gap-3"><input class="accent-pink-500" name="filter-gender" type="radio"/>Boys</label>
+      <label class="flex items-center gap-3"><input class="accent-pink-500" name="filter-gender" type="radio"/>Girls</label>
+    </div>
+  </div>
+  <div class="flex flex-col border-b border-stone-200 dark:border-stone-800 pb-4">
+    <div class="flex items-center justify-between">
+      <h3 class="text-lg font-semibold">Categories</h3>
+      <span class="material-symbols-outlined text-stone-400 text-base">search</span>
+    </div>
+    <div class="mt-3 flex flex-col gap-2 text-sm text-stone-700 dark:text-stone-200">
+      <label class="flex items-center justify-between gap-3"><span class="flex items-center gap-3"><input class="accent-pink-500" type="checkbox"/>Tshirts</span><span class="text-stone-400">(232994)</span></label>
+      <label class="flex items-center justify-between gap-3"><span class="flex items-center gap-3"><input class="accent-pink-500" type="checkbox"/>Shirts</span><span class="text-stone-400">(215002)</span></label>
+      <label class="flex items-center justify-between gap-3"><span class="flex items-center gap-3"><input class="accent-pink-500" type="checkbox"/>Appliance covers</span><span class="text-stone-400">(145262)</span></label>
+      <label class="flex items-center justify-between gap-3"><span class="flex items-center gap-3"><input class="accent-pink-500" type="checkbox"/>Wall Art</span><span class="text-stone-400">(71143)</span></label>
+      <label class="flex items-center justify-between gap-3"><span class="flex items-center gap-3"><input class="accent-pink-500" type="checkbox"/>Trousers</span><span class="text-stone-400">(59090)</span></label>
+      <label class="flex items-center justify-between gap-3"><span class="flex items-center gap-3"><input class="accent-pink-500" type="checkbox"/>Jeans</span><span class="text-stone-400">(51240)</span></label>
+      <label class="flex items-center justify-between gap-3"><span class="flex items-center gap-3"><input class="accent-pink-500" type="checkbox"/>Bedsheets</span><span class="text-stone-400">(49042)</span></label>
+      <label class="flex items-center justify-between gap-3"><span class="flex items-center gap-3"><input class="accent-pink-500" type="checkbox"/>Kurtas</span><span class="text-stone-400">(43844)</span></label>
+    </div>
+    <button class="mt-2 text-xs font-semibold text-pink-500 hover:text-pink-600">+ 725 more</button>
+  </div>
+  <div class="flex flex-col border-b border-stone-200 dark:border-stone-800 pb-4">
+    <div class="flex items-center justify-between">
+      <h3 class="text-lg font-semibold">Brand</h3>
+      <span class="material-symbols-outlined text-stone-400 text-base">search</span>
+    </div>
+    <div class="mt-3 flex flex-col gap-2 text-sm text-stone-700 dark:text-stone-200">
+      <label class="flex items-center justify-between gap-3"><span class="flex items-center gap-3"><input type="checkbox" class="accent-pink-500"/>The Furnishing Tree</span><span class="text-stone-400">(81278)</span></label>
+      <label class="flex items-center justify-between gap-3"><span class="flex items-center gap-3"><input type="checkbox" class="accent-pink-500"/>Stylista</span><span class="text-stone-400">(62118)</span></label>
+      <label class="flex items-center justify-between gap-3"><span class="flex items-center gap-3"><input type="checkbox" class="accent-pink-500"/>Kuber Industries</span><span class="text-stone-400">(38764)</span></label>
+      <label class="flex items-center justify-between gap-3"><span class="flex items-center gap-3"><input type="checkbox" class="accent-pink-500"/>Aura</span><span class="text-stone-400">(31092)</span></label>
+      <label class="flex items-center justify-between gap-3"><span class="flex items-center gap-3"><input type="checkbox" class="accent-pink-500"/>Roadster</span><span class="text-stone-400">(29684)</span></label>
+      <label class="flex items-center justify-between gap-3"><span class="flex items-center gap-3"><input type="checkbox" class="accent-pink-500"/>Dynamic Retail Global</span><span class="text-stone-400">(25125)</span></label>
+      <label class="flex items-center justify-between gap-3"><span class="flex items-center gap-3"><input type="checkbox" class="accent-pink-500"/>QRIOH</span><span class="text-stone-400">(24254)</span></label>
+      <label class="flex items-center justify-between gap-3"><span class="flex items-center gap-3"><input type="checkbox" class="accent-pink-500"/>WOOSTRO</span><span class="text-stone-400">(23718)</span></label>
+    </div>
+    <button class="mt-2 text-xs font-semibold text-pink-500 hover:text-pink-600">+ 11313 more</button>
+  </div>
+  <div class="flex flex-col border-b border-stone-200 dark:border-stone-800 pb-4">
+    <h3 class="text-lg font-semibold">Price</h3>
+    <div class="mt-4 flex flex-col gap-3">
+      <div class="flex items-center gap-3">
+        <span class="text-xs font-semibold uppercase tracking-[0.3em] text-stone-400">₹0</span>
+        <div class="relative flex-1 h-1 rounded-full bg-stone-200 dark:bg-stone-800">
+          <div class="absolute left-0 right-0 h-1 bg-pink-500 rounded-full"></div>
+          <span class="absolute -left-2 -top-1.5 w-3 h-3 rounded-full bg-white border border-pink-500"></span>
+          <span class="absolute -right-2 -top-1.5 w-3 h-3 rounded-full bg-white border border-pink-500"></span>
+        </div>
+        <span class="text-xs font-semibold uppercase tracking-[0.3em] text-stone-400">₹10,000+</span>
+      </div>
+      <p class="text-sm text-stone-600 dark:text-stone-400">₹0 - ₹10,000+</p>
+    </div>
+  </div>
+  <div class="flex flex-col border-b border-stone-200 dark:border-stone-800 pb-4">
+    <div class="flex items-center justify-between">
+      <h3 class="text-lg font-semibold">Color</h3>
+      <span class="material-symbols-outlined text-stone-400 text-base">search</span>
+    </div>
+    <div class="mt-3 space-y-2 text-sm text-stone-700 dark:text-stone-200">
+      <label class="flex items-center justify-between gap-3">
+        <span class="flex items-center gap-3"><input type="checkbox" class="accent-pink-500"/>
+          <span class="flex items-center gap-2"><span class="w-4 h-4 rounded-full border border-transparent" style="background-color:#111618;"></span>Black</span>
+        </span>
+        <span class="text-stone-400">(325906)</span>
+      </label>
+      <label class="flex items-center justify-between gap-3">
+        <span class="flex items-center gap-3"><input type="checkbox" class="accent-pink-500"/>
+          <span class="flex items-center gap-2"><span class="w-4 h-4 rounded-full border border-transparent" style="background-color:#1750ff;"></span>Blue</span>
+        </span>
+        <span class="text-stone-400">(250460)</span>
+      </label>
+      <label class="flex items-center justify-between gap-3">
+        <span class="flex items-center gap-3"><input type="checkbox" class="accent-pink-500"/>
+          <span class="flex items-center gap-2"><span class="w-4 h-4 rounded-full border border-stone-300" style="background-color:#ffffff;"></span>White</span>
+        </span>
+        <span class="text-stone-400">(217985)</span>
+      </label>
+      <label class="flex items-center justify-between gap-3">
+        <span class="flex items-center gap-3"><input type="checkbox" class="accent-pink-500"/>
+          <span class="flex items-center gap-2"><span class="w-4 h-4 rounded-full border border-transparent" style="background-color:#9a9a9a;"></span>Grey</span>
+        </span>
+        <span class="text-stone-400">(169025)</span>
+      </label>
+      <label class="flex items-center justify-between gap-3">
+        <span class="flex items-center gap-3"><input type="checkbox" class="accent-pink-500"/>
+          <span class="flex items-center gap-2"><span class="w-4 h-4 rounded-full border border-transparent" style="background-color:#8c4b1f;"></span>Brown</span>
+        </span>
+        <span class="text-stone-400">(158379)</span>
+      </label>
+      <label class="flex items-center justify-between gap-3">
+        <span class="flex items-center gap-3"><input type="checkbox" class="accent-pink-500"/>
+          <span class="flex items-center gap-2"><span class="w-4 h-4 rounded-full border border-transparent" style="background-color:#3a8c3a;"></span>Green</span>
+        </span>
+        <span class="text-stone-400">(132553)</span>
+      </label>
+      <label class="flex items-center justify-between gap-3">
+        <span class="flex items-center gap-3"><input type="checkbox" class="accent-pink-500"/>
+          <span class="flex items-center gap-2"><span class="w-4 h-4 rounded-full border border-transparent" style="background-color:#2e3275;"></span>Navy Blue</span>
+        </span>
+        <span class="text-stone-400">(87089)</span>
+      </label>
+    </div>
+    <button class="mt-2 text-xs font-semibold text-pink-500 hover:text-pink-600">+ 45 more</button>
+  </div>
+</aside>
+<div class="w-full lg:w-3/4 xl:w-4/5">
+<div class="flex flex-col gap-6 border-b border-stone-200 dark:border-stone-700 pb-6">
+<div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+        <div class="space-y-2">
+          <p class="text-xs font-semibold uppercase tracking-[0.4em] text-stone-500" data-category-label>Now Showing</p>
+          <h1 class="text-3xl font-bold tracking-tight" data-category-heading>All Collections</h1>
+          <p class="text-stone-600 dark:text-stone-400 max-w-2xl" data-category-subheading>Women's, men's, and kids' favorites refreshed daily for every style agenda.</p>
+          <div class="inline-flex items-center gap-2 rounded-full bg-primary/5 px-3 py-1 text-sm font-semibold text-primary" data-product-count-badge>
+            <span>Products:</span>
+            <span data-product-count>0</span>
+          </div>
+        </div>
+<div class="relative">
+<select class="form-select appearance-none block w-full sm:w-56 pl-3 pr-10 py-2 text-base border-stone-300 dark:border-stone-700 dark:bg-background-dark dark:text-stone-100 focus:outline-none focus:ring-primary/50 focus:border-primary/50 rounded-lg">
+<option>Sort by: Newest</option>
+<option>Sort by: Price: Low to High</option>
+<option>Sort by: Price: High to Low</option>
+<option>Sort by: Highest Discount</option>
+<option>Sort by: Lowest Discount</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-stone-700 dark:text-stone-300">
+<span class="material-symbols-outlined" style="font-size: 24px;">expand_more</span>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap gap-3" role="tablist" aria-label="Filter by category">
+<button class="category-pill inline-flex items-center rounded-full border border-stone-300 bg-white px-4 py-2 text-sm font-semibold text-stone-600 shadow-sm transition hover:border-primary hover:text-primary" data-category-pill="all" type="button">All</button>
+<button class="category-pill inline-flex items-center rounded-full border border-stone-300 bg-white px-4 py-2 text-sm font-semibold text-stone-600 shadow-sm transition hover:border-primary hover:text-primary" data-category-pill="women" type="button">Women</button>
+<button class="category-pill inline-flex items-center rounded-full border border-stone-300 bg-white px-4 py-2 text-sm font-semibold text-stone-600 shadow-sm transition hover:border-primary hover:text-primary" data-category-pill="men" type="button">Men</button>
+<button class="category-pill inline-flex items-center rounded-full border border-stone-300 bg-white px-4 py-2 text-sm font-semibold text-stone-600 shadow-sm transition hover:border-primary hover:text-primary" data-category-pill="kids" type="button">Kids</button>
+</div>
+</div>
+<section class="pt-8 space-y-6" data-category-section="women">
+<div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+<div>
+<p class="text-xs font-semibold uppercase tracking-[0.4em] text-stone-500">Women's</p>
+<h2 class="text-3xl font-bold tracking-tight">Women's Highlights</h2>
+<p class="text-stone-600 dark:text-stone-400">Airy linens, liquid silks, and modern tailoring built for long summer days.</p>
+</div>
+<a class="text-sm font-semibold text-primary hover:underline whitespace-nowrap" href="/pages/products?category=women">View all</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+<article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-background-dark border border-stone-200 dark:border-stone-800 product-card" data-product-description="Sun-ready pleats and an airy lining move with every step." data-product-image="https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=800&q=80" data-product-link="/pages/product" data-product-price="$168.00" data-product-title="Drift Pleated Midi Dress" tabindex="0" role="link">
+<a class="block overflow-hidden" href="/pages/product">
+<img alt="Model wearing a pleated blush midi dress" class="h-80 w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=800&q=80"/>
+</a>
+<div class="p-4 space-y-2">
+<p class="text-base font-semibold text-stone-800 dark:text-stone-100">Drift Pleated Midi Dress</p>
+<p class="text-lg font-bold text-stone-900 dark:text-white">$168.00</p>
+<p class="text-sm text-stone-500 dark:text-stone-300">Sun-ready pleats and an airy lining move with every step.</p>
+<a class="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline" href="/pages/product">View details<span class="material-symbols-outlined text-base">north_east</span></a>
+</div>
+</article>
+<article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-background-dark border border-stone-200 dark:border-stone-800 product-card" data-product-description="Cropped utility jacket with adjustable bungees for a custom cinch." data-product-image="https://images.unsplash.com/photo-1518544801958-efcbf8a7ec10?auto=format&fit=crop&w=800&q=80" data-product-link="/pages/product" data-product-price="$148.00" data-product-title="Cloudweight Utility Jacket" tabindex="0" role="link">
+<a class="block overflow-hidden" href="/pages/product">
+<img alt="Woman wearing a cropped olive utility jacket" class="h-80 w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" src="https://images.unsplash.com/photo-1518544801958-efcbf8a7ec10?auto=format&fit=crop&w=800&q=80"/>
+</a>
+<div class="p-4 space-y-2">
+<p class="text-base font-semibold text-stone-800 dark:text-stone-100">Cloudweight Utility Jacket</p>
+<p class="text-lg font-bold text-stone-900 dark:text-white">$148.00</p>
+<p class="text-sm text-stone-500 dark:text-stone-300">Cropped shell finished with utility pockets and a soft mesh lining.</p>
+<a class="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline" href="/pages/product">View details<span class="material-symbols-outlined text-base">north_east</span></a>
+</div>
+</article>
+<article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-background-dark border border-stone-200 dark:border-stone-800 product-card" data-product-description="Soft rib knit cami and matching column skirt for easy desk-to-dinner dressing." data-product-image="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=800&q=80" data-product-link="/pages/product" data-product-price="$210.00" data-product-title="Serene Knit Matching Set" tabindex="0" role="link">
+<a class="block overflow-hidden" href="/pages/product">
+<img alt="Minimalist knit matching set displayed against a neutral backdrop" class="h-80 w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=800&q=80"/>
+</a>
+<div class="p-4 space-y-2">
+<p class="text-base font-semibold text-stone-800 dark:text-stone-100">Serene Knit Matching Set</p>
+<p class="text-lg font-bold text-stone-900 dark:text-white">$210.00</p>
+<p class="text-sm text-stone-500 dark:text-stone-300">Soft rib knit cami and column skirt polish every look.</p>
+<a class="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline" href="/pages/product">View details<span class="material-symbols-outlined text-base">north_east</span></a>
+</div>
+</article>
+<article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-background-dark border border-stone-200 dark:border-stone-800 product-card" data-product-description="Relaxed poplin shirt with statement cuffs and boyish tailoring." data-product-image="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=80" data-product-link="/pages/product" data-product-price="$118.00" data-product-title="Atelier Poplin Shirt" tabindex="0" role="link">
+<a class="block overflow-hidden" href="/pages/product">
+<img alt="White relaxed button-up shirt styled with denim" class="h-80 w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=80"/>
+</a>
+<div class="p-4 space-y-2">
+<p class="text-base font-semibold text-stone-800 dark:text-stone-100">Atelier Poplin Shirt</p>
+<p class="text-lg font-bold text-stone-900 dark:text-white">$118.00</p>
+<p class="text-sm text-stone-500 dark:text-stone-300">Relaxed poplin and exaggerated cuffs elevate the everyday button-up.</p>
+<a class="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline" href="/pages/product">View details<span class="material-symbols-outlined text-base">north_east</span></a>
+</div>
+</article>
+<article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-background-dark border border-stone-200 dark:border-stone-800 product-card" data-product-description="Metallic threading and breathable cotton keep this sweater vest ultra lightweight." data-product-image="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=800&q=80" data-product-link="/pages/product" data-product-price="$98.00" data-product-title="Luna Sweater Vest" tabindex="0" role="link">
+<a class="block overflow-hidden" href="/pages/product">
+<img alt="Close-up of a textured sweater vest" class="h-80 w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=800&q=80"/>
+</a>
+<div class="p-4 space-y-2">
+<p class="text-base font-semibold text-stone-800 dark:text-stone-100">Luna Sweater Vest</p>
+<p class="text-lg font-bold text-stone-900 dark:text-white">$98.00</p>
+<p class="text-sm text-stone-500 dark:text-stone-300">Metallic threading and breathable cotton for four-season layering.</p>
+<a class="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline" href="/pages/product">View details<span class="material-symbols-outlined text-base">north_east</span></a>
+</div>
+</article>
+<article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-background-dark border border-stone-200 dark:border-stone-800 product-card" data-product-description="Hand-braided straps and artisanal hardware define this carryall." data-product-image="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80" data-product-link="/pages/product" data-product-price="$238.00" data-product-title="Lumen Leather Tote" tabindex="0" role="link">
+<a class="block overflow-hidden" href="/pages/product">
+<img alt="Tan leather tote bag on a minimal chair" class="h-80 w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80"/>
+</a>
+<div class="p-4 space-y-2">
+<p class="text-base font-semibold text-stone-800 dark:text-stone-100">Lumen Leather Tote</p>
+<p class="text-lg font-bold text-stone-900 dark:text-white">$238.00</p>
+<p class="text-sm text-stone-500 dark:text-stone-300">Hand-braided straps and antique brass hardware finish this carryall.</p>
+<a class="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline" href="/pages/product">View details<span class="material-symbols-outlined text-base">north_east</span></a>
+</div>
+</article>
+</div>
+</section>
+<section class="pt-12 space-y-6" data-category-section="men">
+<div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+<div>
+<p class="text-xs font-semibold uppercase tracking-[0.4em] text-stone-500">Men's</p>
+<h2 class="text-3xl font-bold tracking-tight">Men's Essentials</h2>
+<p class="text-stone-600 dark:text-stone-400">Elevated staples engineered with breathable fabrics and hidden stretch.</p>
+</div>
+<a class="text-sm font-semibold text-primary hover:underline whitespace-nowrap" href="/pages/products?category=men">View all</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+<article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-background-dark border border-stone-200 dark:border-stone-800 product-card" data-product-description="Relaxed linen weave with a resort collar and coconut buttons." data-product-image="https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=800&q=80" data-product-link="/pages/product" data-product-price="$128.00" data-product-title="Aero Linen Resort Shirt" tabindex="0" role="link">
+<a class="block overflow-hidden" href="/pages/product">
+<img alt="Man wearing a lightweight linen shirt" class="h-80 w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" src="https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=800&q=80"/>
+</a>
+<div class="p-4 space-y-2">
+<p class="text-base font-semibold text-stone-800 dark:text-stone-100">Aero Linen Resort Shirt</p>
+<p class="text-lg font-bold text-stone-900 dark:text-white">$128.00</p>
+<p class="text-sm text-stone-500 dark:text-stone-300">Relaxed linen weave with an open collar and coconut buttons.</p>
+<a class="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline" href="/pages/product">View details<span class="material-symbols-outlined text-base">north_east</span></a>
+</div>
+</article>
+<article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-background-dark border border-stone-200 dark:border-stone-800 product-card" data-product-description="Water-resistant tech shell with hidden hood and storm guards." data-product-image="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=800&q=80" data-product-link="/pages/product" data-product-price="$198.00" data-product-title="Cityscape Performance Jacket" tabindex="0" role="link">
+<a class="block overflow-hidden" href="/pages/product">
+<img alt="Modern charcoal tech jacket" class="h-80 w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=800&q=80"/>
+</a>
+<div class="p-4 space-y-2">
+<p class="text-base font-semibold text-stone-800 dark:text-stone-100">Cityscape Performance Jacket</p>
+<p class="text-lg font-bold text-stone-900 dark:text-white">$198.00</p>
+<p class="text-sm text-stone-500 dark:text-stone-300">Water-resistant tech shell with a hidden hood and storm guards.</p>
+<a class="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline" href="/pages/product">View details<span class="material-symbols-outlined text-base">north_east</span></a>
+</div>
+</article>
+<article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-background-dark border border-stone-200 dark:border-stone-800 product-card" data-product-description="Heritage indigo denim with a tapered leg and comfort stretch." data-product-image="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?auto=format&fit=crop&w=800&q=80" data-product-link="/pages/product" data-product-price="$150.00" data-product-title="Selvedge Modern Taper Jean" tabindex="0" role="link">
+<a class="block overflow-hidden" href="/pages/product">
+<img alt="Close-up of selvedge denim jeans" class="h-80 w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?auto=format&fit=crop&w=800&q=80"/>
+</a>
+<div class="p-4 space-y-2">
+<p class="text-base font-semibold text-stone-800 dark:text-stone-100">Selvedge Modern Taper Jean</p>
+<p class="text-lg font-bold text-stone-900 dark:text-white">$150.00</p>
+<p class="text-sm text-stone-500 dark:text-stone-300">Heritage indigo denim with comfort stretch and a tapered leg.</p>
+<a class="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline" href="/pages/product">View details<span class="material-symbols-outlined text-base">north_east</span></a>
+</div>
+</article>
+<article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-background-dark border border-stone-200 dark:border-stone-800 product-card" data-product-description="Fine merino knit polo with retro tipping and breathable piqué." data-product-image="https://images.unsplash.com/photo-1506634572416-48cdfe530110?auto=format&fit=crop&w=800&q=80" data-product-link="/pages/product" data-product-price="$110.00" data-product-title="Retro Merino Polo" tabindex="0" role="link">
+<a class="block overflow-hidden" href="/pages/product">
+<img alt="Close-up of a knit polo shirt" class="h-80 w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" src="https://images.unsplash.com/photo-1506634572416-48cdfe530110?auto=format&fit=crop&w=800&q=80"/>
+</a>
+<div class="p-4 space-y-2">
+<p class="text-base font-semibold text-stone-800 dark:text-stone-100">Retro Merino Polo</p>
+<p class="text-lg font-bold text-stone-900 dark:text-white">$110.00</p>
+<p class="text-sm text-stone-500 dark:text-stone-300">Fine merino knit polo with retro tipping and breathable piqué.</p>
+<a class="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline" href="/pages/product">View details<span class="material-symbols-outlined text-base">north_east</span></a>
+</div>
+</article>
+<article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-background-dark border border-stone-200 dark:border-stone-800 product-card" data-product-description="Italian wool blazer cut with interior stretch panels for comfort." data-product-image="https://images.unsplash.com/photo-1502323777036-f29e3972d82f?auto=format&fit=crop&w=800&q=80" data-product-link="/pages/product" data-product-price="$320.00" data-product-title="Framework Travel Blazer" tabindex="0" role="link">
+<a class="block overflow-hidden" href="/pages/product">
+<img alt="Tailored blazer on a hanger" class="h-80 w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" src="https://images.unsplash.com/photo-1502323777036-f29e3972d82f?auto=format&fit=crop&w=800&q=80"/>
+</a>
+<div class="p-4 space-y-2">
+<p class="text-base font-semibold text-stone-800 dark:text-stone-100">Framework Travel Blazer</p>
+<p class="text-lg font-bold text-stone-900 dark:text-white">$320.00</p>
+<p class="text-sm text-stone-500 dark:text-stone-300">Italian wool blazer with hidden stretch panels for movement.</p>
+<a class="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline" href="/pages/product">View details<span class="material-symbols-outlined text-base">north_east</span></a>
+</div>
+</article>
+<article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-background-dark border border-stone-200 dark:border-stone-800 product-card" data-product-description="Suede court sneaker with recycled rubber outsole and Ortholite footbed." data-product-image="https://images.unsplash.com/photo-1475180098004-ca77a66827be?auto=format&fit=crop&w=800&q=80" data-product-link="/pages/product" data-product-price="$135.00" data-product-title="Heritage Court Sneaker" tabindex="0" role="link">
+<a class="block overflow-hidden" href="/pages/product">
+<img alt="Minimalist white sneaker on a neutral background" class="h-80 w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" src="https://images.unsplash.com/photo-1475180098004-ca77a66827be?auto=format&fit=crop&w=800&q=80"/>
+</a>
+<div class="p-4 space-y-2">
+<p class="text-base font-semibold text-stone-800 dark:text-stone-100">Heritage Court Sneaker</p>
+<p class="text-lg font-bold text-stone-900 dark:text-white">$135.00</p>
+<p class="text-sm text-stone-500 dark:text-stone-300">Suede court sneaker with recycled rubber outsole and Ortholite footbed.</p>
+<a class="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline" href="/pages/product">View details<span class="material-symbols-outlined text-base">north_east</span></a>
+</div>
+</article>
+</div>
+</section>
+<section class="pt-12 space-y-6" data-category-section="kids">
+<div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+<div>
+<p class="text-xs font-semibold uppercase tracking-[0.4em] text-stone-500">Kids</p>
+<h2 class="text-3xl font-bold tracking-tight">Kids' Capsule</h2>
+<p class="text-stone-600 dark:text-stone-400">Play-proof fabrics, vibrant palettes, and adjustable fits for fast-growing minis.</p>
+</div>
+<a class="text-sm font-semibold text-primary hover:underline whitespace-nowrap" href="/pages/products?category=kids">View all</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+<article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-background-dark border border-stone-200 dark:border-stone-800 product-card" data-product-description="Soft organic cotton tee with bold stripes and easy stretch." data-product-image="https://images.unsplash.com/photo-1445633883498-7f9922d37a3b?auto=format&fit=crop&w=800&q=80" data-product-link="/pages/product" data-product-price="$32.00" data-product-title="Play Stripe Tee" tabindex="0" role="link">
+<a class="block overflow-hidden" href="/pages/product">
+<img alt="Two kids wearing striped tees" class="h-80 w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" src="https://images.unsplash.com/photo-1445633883498-7f9922d37a3b?auto=format&fit=crop&w=800&q=80"/>
+</a>
+<div class="p-4 space-y-2">
+<p class="text-base font-semibold text-stone-800 dark:text-stone-100">Play Stripe Tee</p>
+<p class="text-lg font-bold text-stone-900 dark:text-white">$32.00</p>
+<p class="text-sm text-stone-500 dark:text-stone-300">Soft organic cotton with bold stripes and easy stretch.</p>
+<a class="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline" href="/pages/product">View details<span class="material-symbols-outlined text-base">north_east</span></a>
+</div>
+</article>
+<article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-background-dark border border-stone-200 dark:border-stone-800 product-card" data-product-description="Durable twill overalls with adjustable straps and knee reinforcement." data-product-image="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80" data-product-link="/pages/product" data-product-price="$48.00" data-product-title="Explorer Utility Overalls" tabindex="0" role="link">
+<a class="block overflow-hidden" href="/pages/product">
+<img alt="Child wearing khaki utility overalls" class="h-80 w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80"/>
+</a>
+<div class="p-4 space-y-2">
+<p class="text-base font-semibold text-stone-800 dark:text-stone-100">Explorer Utility Overalls</p>
+<p class="text-lg font-bold text-stone-900 dark:text-white">$48.00</p>
+<p class="text-sm text-stone-500 dark:text-stone-300">Durable twill with adjustable straps and reinforced knees.</p>
+<a class="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline" href="/pages/product">View details<span class="material-symbols-outlined text-base">north_east</span></a>
+</div>
+</article>
+<article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-background-dark border border-stone-200 dark:border-stone-800 product-card" data-product-description="Rainbow fleece hoodie with kangaroo pocket and cozy brushed interior." data-product-image="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=800&q=80" data-product-link="/pages/product" data-product-price="$42.00" data-product-title="Rainbow Fleece Hoodie" tabindex="0" role="link">
+<a class="block overflow-hidden" href="/pages/product">
+<img alt="Kid wearing a rainbow hoodie" class="h-80 w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=800&q=80"/>
+</a>
+<div class="p-4 space-y-2">
+<p class="text-base font-semibold text-stone-800 dark:text-stone-100">Rainbow Fleece Hoodie</p>
+<p class="text-lg font-bold text-stone-900 dark:text-white">$42.00</p>
+<p class="text-sm text-stone-500 dark:text-stone-300">Rainbow fleece hoodie with cozy brushed interior.</p>
+<a class="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline" href="/pages/product">View details<span class="material-symbols-outlined text-base">north_east</span></a>
+</div>
+</article>
+<article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-background-dark border border-stone-200 dark:border-stone-800 product-card" data-product-description="Quick-dry board short with stay-put drawcord and mesh lining." data-product-image="https://images.unsplash.com/photo-1504151932400-72d4384f04b3?auto=format&fit=crop&w=800&q=80" data-product-link="/pages/product" data-product-price="$36.00" data-product-title="Tidal Swim Short" tabindex="0" role="link">
+<a class="block overflow-hidden" href="/pages/product">
+<img alt="Kid splashing in water wearing swim shorts" class="h-80 w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" src="https://images.unsplash.com/photo-1504151932400-72d4384f04b3?auto=format&fit=crop&w=800&q=80"/>
+</a>
+<div class="p-4 space-y-2">
+<p class="text-base font-semibold text-stone-800 dark:text-stone-100">Tidal Swim Short</p>
+<p class="text-lg font-bold text-stone-900 dark:text-white">$36.00</p>
+<p class="text-sm text-stone-500 dark:text-stone-300">Quick-dry board short with stay-put drawcord and mesh lining.</p>
+<a class="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline" href="/pages/product">View details<span class="material-symbols-outlined text-base">north_east</span></a>
+</div>
+</article>
+<article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-background-dark border border-stone-200 dark:border-stone-800 product-card" data-product-description="Slip-on sneakers with extra cushioning for growing feet." data-product-image="https://images.unsplash.com/photo-1496442226666-8d4b78c5ea4c?auto=format&fit=crop&w=800&q=80" data-product-link="/pages/product" data-product-price="$40.00" data-product-title="Canvas Slip-On Sneakers" tabindex="0" role="link">
+<a class="block overflow-hidden" href="/pages/product">
+<img alt="Kid jumping while wearing canvas sneakers" class="h-80 w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" src="https://images.unsplash.com/photo-1496442226666-8d4b78c5ea4c?auto=format&fit=crop&w=800&q=80"/>
+</a>
+<div class="p-4 space-y-2">
+<p class="text-base font-semibold text-stone-800 dark:text-stone-100">Canvas Slip-On Sneakers</p>
+<p class="text-lg font-bold text-stone-900 dark:text-white">$40.00</p>
+<p class="text-sm text-stone-500 dark:text-stone-300">Slip-on sneakers with extra cushioning for growing feet.</p>
+<a class="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline" href="/pages/product">View details<span class="material-symbols-outlined text-base">north_east</span></a>
+</div>
+</article>
+<article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-background-dark border border-stone-200 dark:border-stone-800 product-card" data-product-description="Reversible bucket hat with UPF 40 sun protection." data-product-image="https://images.unsplash.com/photo-1506863530036-1efeddceb993?auto=format&fit=crop&w=800&q=80" data-product-link="/pages/product" data-product-price="$28.00" data-product-title="Sunseeker Bucket Hat" tabindex="0" role="link">
+<a class="block overflow-hidden" href="/pages/product">
+<img alt="Child enjoying sunshine wearing a bucket hat" class="h-80 w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" src="https://images.unsplash.com/photo-1506863530036-1efeddceb993?auto=format&fit=crop&w=800&q=80"/>
+</a>
+<div class="p-4 space-y-2">
+<p class="text-base font-semibold text-stone-800 dark:text-stone-100">Sunseeker Bucket Hat</p>
+<p class="text-lg font-bold text-stone-900 dark:text-white">$28.00</p>
+<p class="text-sm text-stone-500 dark:text-stone-300">Reversible bucket hat with UPF 40 sun protection.</p>
+<a class="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline" href="/pages/product">View details<span class="material-symbols-outlined text-base">north_east</span></a>
+</div>
+</article>
+</div>
+</section>
+<div class="mt-12 flex justify-center">
+<nav aria-label="Pagination" class="flex items-center gap-2">
+<a class="inline-flex items-center justify-center h-10 w-10 rounded-lg text-sm font-medium text-stone-500 hover:bg-stone-100 dark:hover:bg-stone-800" href="#">
+<span class="material-symbols-outlined">chevron_left</span>
+</a>
+<a class="inline-flex items-center justify-center h-10 w-10 rounded-lg text-sm font-semibold bg-primary text-white" href="#">1</a>
+<a class="inline-flex items-center justify-center h-10 w-10 rounded-lg text-sm font-medium text-stone-800 dark:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800" href="#">2</a>
+<a class="inline-flex items-center justify-center h-10 w-10 rounded-lg text-sm font-medium text-stone-800 dark:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800" href="#">3</a>
+<span class="inline-flex items-center justify-center h-10 w-10 text-sm font-medium text-stone-500">...</span>
+<a class="inline-flex items-center justify-center h-10 w-10 rounded-lg text-sm font-medium text-stone-800 dark:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800" href="#">8</a>
+<a class="inline-flex items-center justify-center h-10 w-10 rounded-lg text-sm font-medium text-stone-500 hover:bg-stone-100 dark:hover:bg-stone-800" href="#">
+<span class="material-symbols-outlined">chevron_right</span>
+</a>
+</nav>
+</div>
+</div>
+</main>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const sections = document.querySelectorAll('[data-category-section]');
+  const headingEl = document.querySelector('[data-category-heading]');
+  const subheadingEl = document.querySelector('[data-category-subheading]');
+  const labelEl = document.querySelector('[data-category-label]');
+  const pills = document.querySelectorAll('[data-category-pill]');
+  const copy = {
+    all: {
+      heading: "All Collections",
+      subheading: "Women's, men's, and kids' favorites refreshed daily for every style agenda.",
+      label: "Now Showing",
+    },
+    women: {
+      heading: "Women's Collection",
+      subheading: "Statement dresses, suiting, and weekend layers tailored for her.",
+      label: "Women's Edit",
+    },
+    men: {
+      heading: "Men's Collection",
+      subheading: "Performance tailoring and modern staples built for every itinerary.",
+      label: "Men's Edit",
+    },
+    kids: {
+      heading: "Kids' Capsule",
+      subheading: "Play-proof layers, adaptive fits, and bold colors for minis.",
+      label: "Kids Spotlight",
+    },
+  };
+
+  const toggleActive = (activeCategory) => {
+    const normalized = copy[activeCategory] ? activeCategory : 'all';
+    sections.forEach((section) => {
+      const target = section.dataset.categorySection;
+      const shouldShow = normalized === 'all' || target === normalized;
+      section.classList.toggle('hidden', !shouldShow);
+    });
+    pills.forEach((pill) => {
+      const isActive = (pill.dataset.categoryPill || 'all') === normalized;
+      pill.classList.toggle('bg-primary', isActive);
+      pill.classList.toggle('text-white', isActive);
+      pill.classList.toggle('border-primary', isActive);
+      pill.classList.toggle('shadow-lg', isActive);
+      pill.setAttribute('aria-pressed', String(isActive));
+    });
+    if (headingEl) headingEl.textContent = copy[normalized].heading;
+    if (subheadingEl) subheadingEl.textContent = copy[normalized].subheading;
+    if (labelEl) labelEl.textContent = copy[normalized].label;
+    const url = new URL(window.location.href);
+    if (normalized === 'all') {
+      url.searchParams.delete('category');
+    } else {
+      url.searchParams.set('category', normalized);
+    }
+    window.history.replaceState({}, '', url);
+  };
+
+  const initialCategory = (new URLSearchParams(window.location.search).get('category') || '').toLowerCase();
+  toggleActive(copy[initialCategory] ? initialCategory : 'all');
+
+  pills.forEach((pill) => {
+    pill.addEventListener('click', () => {
+      const nextCategory = (pill.dataset.categoryPill || 'all').toLowerCase();
+      toggleActive(nextCategory);
+    });
+  });
+
+  const extractImageUrl = (styleString = '') => {
+    const match = styleString.match(/url\((['"]?)(.*?)\1\)/i);
+    return match ? match[2] : '';
+  };
+
+  const buildProductPayload = (card) => {
+    if (!card) return null;
+    const textBlocks = card.querySelectorAll('div > p');
+    const rawName = (card.dataset.productTitle || textBlocks[0]?.textContent || '').trim();
+    const rawPrice = (card.dataset.productPrice || textBlocks[1]?.textContent || '').trim();
+    const descriptionSource =
+      card.dataset.productDescription ||
+      card.querySelector('[data-product-description]')?.textContent ||
+      `Discover the ${rawName || 'latest Seira piece'} from our newest drop.`;
+
+    const taggedImage = card.querySelector('[data-product-image]');
+    const imageCandidate =
+      card.dataset.productImage ||
+      taggedImage?.dataset?.productImage ||
+      taggedImage?.getAttribute?.('src') ||
+      card.querySelector('img')?.getAttribute('src');
+
+    let heroImage = imageCandidate;
+    if (!heroImage) {
+      const styledEl = card.querySelector('[style*="background-image"]');
+      if (styledEl) {
+        heroImage = styledEl.dataset?.productImage || extractImageUrl(styledEl.getAttribute('style') || '');
+      }
+    }
+
+    const galleryData = card.dataset.productGallery
+      ? card.dataset.productGallery.split(',').map((item) => item.trim()).filter(Boolean)
+      : [];
+
+    if (!galleryData.length && heroImage) {
+      galleryData.push(heroImage);
+    }
+
+    const slugSource = rawName || card.dataset.productId || 'seira-product';
+    const productId = slugSource
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '') || 'seira-product';
+
+    return {
+      id: productId,
+      title: rawName || 'Seira Exclusive',
+      price: rawPrice || '',
+      description: descriptionSource.trim(),
+      image: heroImage || '',
+      gallery: galleryData,
+    };
+  };
+
+  const cards = document.querySelectorAll('.product-card');
+  const productCountTarget = document.querySelector('[data-product-count]');
+  if (productCountTarget) {
+    productCountTarget.textContent = String(cards.length || 0);
+  }
+  cards.forEach((card) => {
+    const target = card.dataset.productLink || '/pages/product';
+    const goToProduct = (event) => {
+      if (event) {
+        event.preventDefault();
+      }
+      const payload = buildProductPayload(card);
+      if (payload) {
+        try {
+          localStorage.setItem('selectedProduct', JSON.stringify(payload));
+        } catch (error) {
+          console.warn('Unable to store product details', error);
+        }
+      }
+      window.location.href = target;
+    };
+    card.addEventListener('click', goToProduct);
+    card.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        goToProduct(event);
+      }
+    });
+    card.classList.add('cursor-pointer');
+  });
+});
+</script>
+<script src="/static/js/cart-indicator.js"></script>
+<script src="/static/js/ai-search-modal.js"></script>
+<script src="/static/js/shop-modal.js"></script>
+<script src="/static/js/simon-modal.js"></script>
+<script src="/static/js/wishlist.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const profileModal = document.getElementById('profile-modal');
+  const toggleProfileModal = (shouldShow) => {
+    if (!profileModal) return;
+    profileModal.classList.toggle('hidden', !shouldShow);
+    document.body.classList.toggle('overflow-hidden', shouldShow);
+  };
+
+  document.querySelectorAll('[data-profile-trigger]').forEach((btn) => {
+    btn.addEventListener('click', () => toggleProfileModal(true));
+  });
+
+  profileModal?.querySelectorAll('[data-profile-close]').forEach((btn) => {
+    btn.addEventListener('click', () => toggleProfileModal(false));
+  });
+});
+</script>
+</body></html>

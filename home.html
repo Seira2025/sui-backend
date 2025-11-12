@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Seira - Modern Clothing Brand</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#13a4ec",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101c22",
+          },
+          fontFamily: {
+            "display": ["Plus Jakarta Sans", "Noto Sans", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-[#222222] dark:text-gray-200">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- TopNavBar Component -->
+<header class="sticky top-0 z-50 flex w-full justify-center border-b border-solid border-gray-200/80 dark:border-gray-700/80 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+<div class="flex items-center gap-4 flex-nowrap whitespace-nowrap px-4 sm:px-10 py-3 w-full max-w-7xl">
+<div class="flex items-center gap-6 flex-shrink-0">
+<div class="flex items-center gap-4">
+<div class="flex flex-col leading-tight uppercase">
+<a class="relative inline-flex items-center text-lg font-black tracking-[0.25em] text-[#111618] dark:text-white" href="/pages/home">
+<span class="inline-flex px-1.5 py-0.5 rounded-sm bg-[#111618] dark:bg-white text-white dark:text-[#111618] tracking-[0.2em] items-center leading-none h-5">SE</span>IRA
+<span class="absolute -bottom-1 -right-6 text-[10px] font-semibold tracking-normal lowercase text-gray-500 dark:text-gray-300">.com</span>
+</a>
+</div>
+</div>
+<nav class="hidden lg:flex items-center gap-6 text-sm font-semibold uppercase tracking-wide text-[#111618] ml-10">
+<a class="hover:text-primary transition-colors" href="/pages/products?category=men">Men</a>
+<a class="hover:text-primary transition-colors" href="/pages/products?category=women">Women</a>
+<div class="relative group">
+<a class="hover:text-primary transition-colors" href="/pages/products?category=kids">Kids</a>
+<div class="pointer-events-none group-hover:pointer-events-auto group-hover:opacity-100 opacity-0 transition flex-col absolute left-1/2 -translate-x-1/2 top-full mt-4 w-[420px] bg-white dark:bg-background-dark/95 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-2xl p-4 hidden lg:flex gap-3">
+  <p class="text-xs font-semibold text-gray-500 uppercase tracking-[0.4em]">Kids Picks</p>
+  <div class="grid grid-cols-2 gap-3">
+    <a class="flex gap-3 rounded-xl border border-gray-200 dark:border-gray-700 p-2 hover:border-primary transition" href="/pages/products?category=kids">
+      <div class="w-16 h-16 rounded-lg bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1445633883498-7f9922d37a3b?auto=format&fit=crop&w=300&q=80');"></div>
+      <div class="text-sm">
+        <p class="font-semibold text-[#111618] dark:text-white">Play Stripe Tee</p>
+        <p class="text-xs text-gray-500">$22 · Ages 3-6</p>
+      </div>
+    </a>
+    <a class="flex gap-3 rounded-xl border border-gray-200 dark:border-gray-700 p-2 hover:border-primary transition" href="/pages/products?category=kids">
+      <div class="w-16 h-16 rounded-lg bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=300&q=80');"></div>
+      <div class="text-sm">
+        <p class="font-semibold text-[#111618] dark:text-white">Rainbow Hoodie</p>
+        <p class="text-xs text-gray-500">$35 · Ages 5-10</p>
+      </div>
+    </a>
+    <a class="flex gap-3 rounded-xl border border-gray-200 dark:border-gray-700 p-2 hover:border-primary transition" href="/pages/products?category=kids">
+      <div class="w-16 h-16 rounded-lg bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=300&q=80');"></div>
+      <div class="text-sm">
+        <p class="font-semibold text-[#111618] dark:text-white">Utility Overalls</p>
+        <p class="text-xs text-gray-500">$38 · Adjustable straps</p>
+      </div>
+    </a>
+    <a class="flex gap-3 rounded-xl border border-gray-200 dark:border-gray-700 p-2 hover:border-primary transition" href="/pages/products?category=kids">
+      <div class="w-16 h-16 rounded-lg bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=300&q=80');"></div>
+      <div class="text-sm">
+        <p class="font-semibold text-[#111618] dark:text-white">Canvas Slip-ons</p>
+        <p class="text-xs text-gray-500">$28 · Easy on/off</p>
+      </div>
+    </a>
+</div>
+<a class="text-xs font-semibold text-primary uppercase tracking-[0.3em] text-center hover:underline" href="/pages/products?category=kids">Browse all kids</a>
+</div>
+</div>
+<a class="hover:text-primary transition-colors" href="#" data-shop-trigger role="button" aria-haspopup="dialog">Shop</a>
+<a class="hover:text-primary transition-colors" href="/pages/products">GENZ</a>
+<div class="flex items-center gap-1">
+<button class="hover:text-primary transition-colors" type="button" data-ai-search-trigger>AI Search</button>
+<span class="text-[10px] font-bold text-primary tracking-[0.2em] uppercase">New</span>
+</div>
+</nav>
+</div>
+<div class="hidden md:flex flex-1 justify-center sm:ml-6">
+<label class="flex flex-col min-w-[240px] !h-10 w-full max-w-xl">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full shadow-sm">
+<div class="text-[#617c89] dark:text-gray-400 flex bg-gray-200 dark:bg-gray-800 items-center justify-center pl-3 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined" style="font-size: 20px;">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111618] dark:text-white focus:outline-0 focus:ring-0 border-none bg-gray-200 dark:bg-gray-800 focus:border-none h-full placeholder:text-[#617c89] dark:placeholder:text-gray-400 px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search for products and more" value=""/>
+</div>
+</label>
+</div>
+<div class="flex gap-6 ml-auto text-[11px] font-semibold uppercase tracking-wide text-[#222222] dark:text-gray-200">
+<button class="flex flex-col items-center justify-center gap-1" data-profile-trigger>
+<span class="material-symbols-outlined text-xl">person</span>
+<span>Profile</span>
+</button>
+<a class="flex flex-col items-center justify-center gap-1" href="/pages/wishlist">
+<span class="material-symbols-outlined text-xl">favorite</span>
+<span>Wishlist</span>
+</a>
+<a class="relative flex flex-col items-center justify-center gap-1" href="/pages/cart">
+<span class="material-symbols-outlined text-xl">shopping_bag</span>
+<span>Bag</span>
+<span class="absolute top-0 right-1 rounded-full bg-primary text-white text-[10px] font-bold px-1" data-cart-count>0</span>
+</a>
+</div>
+</div>
+</header>
+<div id="profile-modal" class="fixed inset-0 z-[9999] hidden">
+<div class="absolute inset-0 bg-black/60" data-profile-close></div>
+<div class="relative max-w-sm w-full mx-auto mt-24 bg-white dark:bg-background-dark rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-800 overflow-hidden">
+<div class="h-1 bg-primary"></div>
+<div class="p-6 space-y-4">
+<div class="flex items-start justify-between">
+<div>
+<p class="text-sm font-semibold text-gray-500 uppercase tracking-[0.2em]">Welcome</p>
+<p class="text-base text-gray-600 dark:text-gray-300">To access account and manage orders</p>
+</div>
+<button class="text-gray-400 hover:text-primary" data-profile-close>
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<button class="w-full inline-flex items-center justify-center rounded-lg border border-primary text-primary font-bold uppercase tracking-[0.2em] py-2 hover:bg-primary/10 transition" type="button" data-simon-trigger>Login / Signup</button>
+<div class="border-t border-gray-200 dark:border-gray-700 pt-4 grid grid-cols-2 gap-3 text-sm text-gray-700 dark:text-gray-300">
+<span>Orders</span>
+<span>Wishlist</span>
+<span>Gift Cards</span>
+<span>Contact Us</span>
+<span class="flex items-center gap-2">Seira+ <span class="text-[10px] text-white bg-primary px-2 py-0.5 rounded-full uppercase">New</span></span>
+<span>Seira Credit</span>
+<span>Coupons</span>
+<span>Saved Cards</span>
+<span>Saved VPA</span>
+<span>Saved Addresses</span>
+</div>
+</div>
+</div>
+</div>
+<main class="flex flex-col items-center">
+<section class="w-full mt-0">
+<div class="@container px-4 sm:px-10 pb-5">
+<div class="@[480px]:px-4 @[480px]:pb-4">
+<div class="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 hero-carousel [-ms-overflow-style:none] [scrollbar-width:none]">
+<style>.hero-carousel::-webkit-scrollbar{display:none;}</style>
+<article class="snap-center min-w-full flex min-h-[480px] flex-col gap-6 @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-4 relative overflow-hidden text-center text-white">
+<div class="absolute inset-0 bg-cover bg-center" style='background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuCgNgfsFo2DgqOJH6VnAvdUVYXoHiONGqsgbnmFXROvkTS0jw7ikroSmJpH2Wc2sI_FV9RXjZRCUPgjoKPmBoDTvDgjy1579jolJKvveUxYd3Dv1NGflJPkJqzQF3CnyFnGs03_H_F7EK2WGDTyuxy9vJgCIVhcm0pefAD-qPbGVlc65fEtSv54FQqPNUC87QnvQxdUHRXb-S9e1n2lXB_7bjPs0xvjBRY4a6_qTPX8-yclsGmGSO6ldzlFA14b-Ql9NU5_nWtwZeN-");'></div>
+<div class="relative z-10 flex flex-col gap-2">
+<p class="uppercase tracking-[0.4em] text-sm text-white/80">Women</p>
+<h1 class="text-4xl font-black @[480px]:text-5xl leading-tight tracking-[-0.033em]">The Summer Picks</h1>
+<h2 class="text-sm @[480px]:text-base">Discover linen dresses, airy separates, and sun-ready layers for every getaway.</h2>
+</div>
+<a class="relative z-10 flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:leading-normal hover:bg-primary/90 transition-colors" href="/pages/products?category=women">
+<span class="truncate">Shop Women</span>
+</a>
+</article>
+<article class="snap-center min-w-full flex min-h-[480px] flex-col gap-6 @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-4 relative overflow-hidden text-center text-white">
+<div class="absolute inset-0 bg-cover bg-center" style='background-image: linear-gradient(rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.65) 100%), url("https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1400&q=80");'></div>
+<div class="relative z-10 flex flex-col gap-2">
+<p class="uppercase tracking-[0.4em] text-sm text-white/80">Men</p>
+<h1 class="text-4xl font-black @[480px]:text-5xl leading-tight tracking-[-0.033em]">City Smart Layers</h1>
+<h2 class="text-sm @[480px]:text-base">Tailored linen, relaxed polos, and statement sneakers engineered for long days out.</h2>
+</div>
+<a class="relative z-10 flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:leading-normal hover:bg-primary/90 transition-colors" href="/pages/products?category=men">
+<span class="truncate">Shop Men</span>
+</a>
+</article>
+<article class="snap-center min-w-full flex min-h-[480px] flex-col gap-6 @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-4 relative overflow-hidden text-center text-white">
+<div class="absolute inset-0 bg-cover bg-center" style='background-image: linear-gradient(rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%), url("https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1200&q=80");'></div>
+<div class="relative z-10 flex flex-col gap-2">
+<p class="uppercase tracking-[0.4em] text-sm text-white/80">Kids</p>
+<h1 class="text-4xl font-black @[480px]:text-5xl leading-tight tracking-[-0.033em]">Playground Proof</h1>
+<h2 class="text-sm @[480px]:text-base">Soft fabrics, resilient washes, and cheerful prints built for endless adventures.</h2>
+</div>
+<a class="relative z-10 flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:leading-normal hover:bg-primary/90 transition-colors" href="/pages/products?category=kids">
+<span class="truncate">Shop Kids</span>
+</a>
+</article>
+<article class="snap-center min-w-full flex min-h-[480px] flex-col gap-6 @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-4 relative overflow-hidden text-center text-white">
+<div class="absolute inset-0 bg-cover bg-center" style='background-image: linear-gradient(rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.6) 100%), url("https://images.unsplash.com/photo-1518544801958-efcbf8a7ec10?auto=format&fit=crop&w=1400&q=80");'></div>
+<div class="relative z-10 flex flex-col gap-2">
+<p class="uppercase tracking-[0.4em] text-sm text-white/80">Accessories</p>
+<h1 class="text-4xl font-black @[480px]:text-5xl leading-tight tracking-[-0.033em]">Finish the Look</h1>
+<h2 class="text-sm @[480px]:text-base">Statement bags, sun-ready hats, and jewelry that elevates every outfit.</h2>
+</div>
+<a class="relative z-10 flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:leading-normal hover:bg-primary/90 transition-colors" href="/pages/products?category=women">
+<span class="truncate">Shop Accessories</span>
+</a>
+</article>
+</div>
+<p class="text-center text-sm text-gray-600 dark:text-gray-300 mt-2">Swipe to explore the full collection.</p>
+</div>
+</div>
+</section>
+<section class="w-full max-w-7xl mx-auto px-4 sm:px-10 pb-5">
+<div class="flex justify-end items-center gap-3 py-4">
+<p class="text-sm text-[#617c89] dark:text-gray-400">Want to review your picks?</p>
+<a class="inline-flex items-center justify-center rounded-lg bg-primary text-white text-sm font-semibold px-4 py-2 hover:bg-primary/90 transition-colors" href="/pages/cart">Go to Cart</a>
+</div>
+<!-- SectionHeader for New Arrivals -->
+<h2 class="text-[#111618] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-10">New Arrivals</h2>
+<!-- ImageGrid for New Arrivals -->
+<div class="px-4">
+    <div class="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 [-ms-overflow-style:none] [scrollbar-width:none]" style="scrollbar-width:none;">
+      <style>::-webkit-scrollbar { display: none; }</style>
+    <!-- Card 1 -->
+    <div class="flex flex-col gap-3 pb-3 group snap-start min-w-[220px] product-card" data-product-link="/pages/product" tabindex="0" role="link">
+      <div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg overflow-hidden">
+        <div class="w-full h-full bg-cover bg-center transform transition-transform duration-500 ease-in-out group-hover:scale-110" data-alt="A female model wearing a flowing white linen blend jumpsuit." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCOslMHXM3fgXcMv8F5Fpu2iAp-5ApsPPO66WnWuVoJnQDKd61YR8xdOdiUtkyg-lIiD2SrQYYsQm1TNnyTF5k4bVb0K7x2gKjnoPeSWTHRABGDLcW4OeNPcl9nJG48NxI1YX0zBMo4w9oicwN1Oz3bClA10BDXuOm0DERzDtraLjRTKsNrE2NagCdLSio5lB4f3vFVQZ-9fhjnCiWpgu1WXsQpLnPbnpxVVxnDDmufxq1RfWUF8KRqKg73VDubaSeXOE55iup8MQzT");'></div>
+      </div>
+      <div>
+        <p class="text-[#111618] dark:text-gray-100 text-base font-medium leading-normal">Linen Blend Jumpsuit</p>
+        <p class="text-[#617c89] dark:text-gray-400 text-sm font-normal leading-normal">$120.00</p>
+        <a class="text-primary text-sm font-semibold hover:underline" href="/pages/product">View Details</a>
+      </div>
+    </div>
+    <!-- Card 2 -->
+    <div class="flex flex-col gap-3 pb-3 group snap-start min-w-[220px] product-card" data-product-link="/pages/product" tabindex="0" role="link">
+      <div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg overflow-hidden">
+        <div class="w-full h-full bg-cover bg-center transform transition-transform duration-500 ease-in-out group-hover:scale-110" data-alt="A close-up of a soft, cream-colored organic cotton t-shirt." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD9lgUuZi5GtFg_Yji452VpqrsIzDuzXodEcbrAit6_wrTjuWoS6LdQbMDK1_dH8NtF7lWtGk69R6jT9HKivRmapMgMMpLEw-xiB8n1KwP4bjiiPrYVOjKZCfRiTG5PPbe5_jNGvrUGHD9gv8Wf8CHd4ZuG0hyD8FRc83MREhRkAlFoJOX_xqy0bnIVk4MJA3E9eWue75rfjyQ3Oage1TyoouUtDA-C6Gahyg88OQhns6Jgk68k40hLVj8sZcS_8l8YM-vfRFR9jfQ4");'></div>
+      </div>
+      <div>
+        <p class="text-[#111618] dark:text-gray-100 text-base font-medium leading-normal">Organic Cotton Tee</p>
+        <p class="text-[#617c89] dark:text-gray-400 text-sm font-normal leading-normal">$45.00</p>
+        <a class="text-primary text-sm font-semibold hover:underline" href="/pages/product">View Details</a>
+      </div>
+    </div>
+    <!-- Card 3 -->
+    <div class="flex flex-col gap-3 pb-3 group snap-start min-w-[220px] product-card" data-product-link="/pages/product" tabindex="0" role="link">
+      <div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg overflow-hidden">
+        <div class="w-full h-full bg-cover bg-center transform transition-transform duration-500 ease-in-out group-hover:scale-110" data-alt="A pair of light-wash, high-waist denim shorts." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDhDJElYcJhEEjIM91CfksG4J1SQvtTKgJD5w82TfpZwCeOUl6ruNr6hTwNhPt9Qzp8wBimvTWfRq8P0pGweWqtv9Nv60noH31C6m3wJ0Hu8Z04RaRIpc3V0BM1xt4Snfuf0KomhyVskqE_JLWgaqZMtJuajgP91MSCFPZhXlJHvXVOcxAftyR4M7G-iu6A4N_GZBmYtqgI866gPbuBwxvCx0iEJr-v4U8M-zzXK4ptCMzp1WfgmKaQM3qP0K0O6qqMIk-nPp7-VsIm");'></div>
+      </div>
+      <div>
+        <p class="text-[#111618] dark:text-gray-100 text-base font-medium leading-normal">High-Waist Denim Shorts</p>
+        <p class="text-[#617c89] dark:text-gray-400 text-sm font-normal leading-normal">$78.00</p>
+        <a class="text-primary text-sm font-semibold hover:underline" href="/pages/product">View Details</a>
+      </div>
+    </div>
+    <!-- Card 4 -->
+    <div class="flex flex-col gap-3 pb-3 group snap-start min-w-[220px] product-card" data-product-link="/pages/product" tabindex="0" role="link">
+      <div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg overflow-hidden">
+        <div class="w-full h-full bg-cover bg-center transform transition-transform duration-500 ease-in-out group-hover:scale-110" data-alt="A minimalist slip dress." style='background-image: url("https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80");'></div>
+      </div>
+      <div>
+        <p class="text-[#111618] dark:text-gray-100 text-base font-medium leading-normal">Silk Slip Dress</p>
+        <p class="text-[#617c89] dark:text-gray-400 text-sm font-normal leading-normal">$210.00</p>
+        <a class="text-primary text-sm font-semibold hover:underline" href="/pages/product">View Details</a>
+      </div>
+    </div>
+    <!-- Card 5 -->
+    <div class="flex flex-col gap-3 pb-3 group snap-start min-w-[220px] product-card" data-product-link="/pages/product" tabindex="0" role="link">
+      <div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg overflow-hidden">
+        <div class="w-full h-full bg-cover bg-center transform transition-transform duration-500 ease-in-out group-hover:scale-110" data-alt="Cable knit cardigan." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBnfXRD0jzizdinRpxIE7Q2EGxOCEE91T-XrdLuk6RRd821wZNhMTv-R5yJquEUem_QsS0nhY_mcwe50FUQt7GK8G13u-k6bX-PPniZ5Va1YH1bFO6bNB_to7-QukXn3s8hnRYIxC1eixR8O1mf-FC0Nlm48vCkXa0Au3iSaYMrqu5hUimUiufx2jFm-JeJq8jWVCqaoNq-OOyaP53lJ7e1b0dQV9VBXT1ExK-pqXXpyi2GQt8uWzJXFhGVF71qQfg-1gY9sWLOyoAp");'></div>
+      </div>
+      <div>
+        <p class="text-[#111618] dark:text-gray-100 text-base font-medium leading-normal">Cable Knit Cardigan</p>
+        <p class="text-[#617c89] dark:text-gray-400 text-sm font-normal leading-normal">$135.00</p>
+        <a class="text-primary text-sm font-semibold hover:underline" href="/pages/product">View Details</a>
+      </div>
+    </div>
+    <!-- Card 6 -->
+    <div class="flex flex-col gap-3 pb-3 group snap-start min-w-[220px] product-card" data-product-link="/pages/product" tabindex="0" role="link">
+      <div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg overflow-hidden">
+        <div class="w-full h-full bg-cover bg-center transform transition-transform duration-500 ease-in-out group-hover:scale-110" data-alt="A female model wearing a beige ribbed knit tank top." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBnfXRD0jzizdinRpxIE7Q2EGxOCEE91T-XrdLuk6RRd821wZNhMTv-R5yJquEUem_QsS0nhY_mcwe50FUQt7GK8G13u-k6bX-PPniZ5Va1YH1bFO6bNB_to7-QukXn3s8hnRYIxC1eixR8O1mf-FC0Nlm48vCkXa0Au3iSaYMrqu5hUimUiufx2jFm-JeJq8jWVCqaoNq-OOyaP53lJ7e1b0dQV9VBXT1ExK-pqXXpyi2GQt8uWzJXFhGVF71qQfg-1gY9sWLOyoAp");'></div>
+      </div>
+      <div>
+        <p class="text-[#111618] dark:text-gray-100 text-base font-medium leading-normal">Ribbed Knit Tank</p>
+        <p class="text-[#617c89] dark:text-gray-400 text-sm font-normal leading-normal">$55.00</p>
+        <a class="text-primary text-sm font-semibold hover:underline" href="/pages/product">View Details</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="px-4 mt-10">
+  <div class="flex items-center justify-between mb-4">
+    <h3 class="text-lg font-semibold text-[#111618] dark:text-white uppercase tracking-[0.3em]">Kids</h3>
+    <a class="text-sm font-semibold text-primary hover:underline" href="/pages/products?category=kids">View all</a>
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="bg-white dark:bg-background-dark rounded-2xl shadow-sm border border-gray-200 dark:border-gray-800 overflow-hidden product-card cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/50" data-product-title="Striped Cotton Tee" data-product-price="$22.00" data-product-image="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=600&q=80" data-product-link="/pages/product" data-product-description="Ages 3-6 • Breathable knit" tabindex="0" role="link">
+      <div class="aspect-square bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=600&q=80');"></div>
+      <div class="p-4 space-y-1">
+        <p class="text-sm text-gray-500 uppercase tracking-[0.3em]">Playtime</p>
+        <h4 class="text-base font-semibold text-[#111618] dark:text-white">Striped Cotton Tee</h4>
+        <p class="text-sm text-gray-500 dark:text-gray-300">Ages 3-6 • Breathable knit</p>
+        <p class="text-lg font-bold text-primary">$22.00</p>
+        <a class="inline-flex items-center text-sm font-semibold text-primary hover:underline" href="/pages/product">View product</a>
+      </div>
+    </div>
+    <div class="bg-white dark:bg-background-dark rounded-2xl shadow-sm border border-gray-200 dark:border-gray-800 overflow-hidden product-card cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/50" data-product-title="Utility Overalls" data-product-price="$38.00" data-product-image="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=600&q=80" data-product-link="/pages/product" data-product-description="Adjustable straps • Durable twill" tabindex="0" role="link">
+      <div class="aspect-square bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=600&q=80');"></div>
+      <div class="p-4 space-y-1">
+        <p class="text-sm text-gray-500 uppercase tracking-[0.3em]">Mini Explorer</p>
+        <h4 class="text-base font-semibold text-[#111618] dark:text-white">Utility Overalls</h4>
+        <p class="text-sm text-gray-500 dark:text-gray-300">Adjustable straps • Durable twill</p>
+        <p class="text-lg font-bold text-primary">$38.00</p>
+        <a class="inline-flex items-center text-sm font-semibold text-primary hover:underline" href="/pages/product">View product</a>
+      </div>
+    </div>
+    <div class="bg-white dark:bg-background-dark rounded-2xl shadow-sm border border-gray-200 dark:border-gray-800 overflow-hidden product-card cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/50" data-product-title="Rainbow Hoodie" data-product-price="$35.00" data-product-image="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80" data-product-link="/pages/product" data-product-description="Soft fleece • Sizes 5-10" tabindex="0" role="link">
+      <div class="aspect-square bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80');"></div>
+      <div class="p-4 space-y-1">
+        <p class="text-sm text-gray-500 uppercase tracking-[0.3em]">Weekend</p>
+        <h4 class="text-base font-semibold text-[#111618] dark:text-white">Rainbow Hoodie</h4>
+        <p class="text-sm text-gray-500 dark:text-gray-300">Soft fleece • Sizes 5-10</p>
+        <p class="text-lg font-bold text-primary">$35.00</p>
+        <a class="inline-flex items-center text-sm font-semibold text-primary hover:underline" href="/pages/product">View product</a>
+      </div>
+    </div>
+    <div class="bg-white dark:bg-background-dark rounded-2xl shadow-sm border border-gray-200 dark:border-gray-800 overflow-hidden product-card cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/50" data-product-title="Canvas Slip-ons" data-product-price="$28.00" data-product-image="https://images.unsplash.com/photo-1445633883498-7f9922d37a3b?auto=format&fit=crop&w=600&q=80" data-product-link="/pages/product" data-product-description="Easy on/off • Cushioned footbed" tabindex="0" role="link">
+      <div class="aspect-square bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1445633883498-7f9922d37a3b?auto=format&fit=crop&w=600&q=80');"></div>
+      <div class="p-4 space-y-1">
+        <p class="text-sm text-gray-500 uppercase tracking-[0.3em]">Sunny Days</p>
+        <h4 class="text-base font-semibold text-[#111618] dark:text-white">Canvas Slip-ons</h4>
+        <p class="text-sm text-gray-500 dark:text-gray-300">Easy on/off • Cushioned footbed</p>
+        <p class="text-lg font-bold text-primary">$28.00</p>
+        <a class="inline-flex items-center text-sm font-semibold text-primary hover:underline" href="/pages/product">View product</a>
+      </div>
+    </div>
+  </div>
+</div>
+<h2 class="text-[#111618] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-10">Shop by Category</h2>
+<div class="px-4">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div class="space-y-3">
+      <div class="flex items-center justify-between">
+        <h3 class="text-lg font-semibold text-[#111618] dark:text-white uppercase tracking-[0.3em]">Women</h3>
+        <a class="text-sm font-semibold text-primary hover:underline" href="/pages/products?category=women">View all</a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <a class="relative h-48 rounded-xl overflow-hidden group" href="/pages/products?category=women">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-in-out group-hover:scale-110" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDCfVb7F4TVr_xB5myx3RUizibNei5gCuokXVg1G1MwdZj89tsIRESQlI8kdWLPNjy8Q7xmeABHPLtmI8m7HbAzrAqKD15G3OsqaiXipSEn4S99uR3MN8OatBw0ShiTTUSq12iKPsNL4gAzmS5k7bZJ5dQVarIBBdmrpkqqPcEXznoxBhFrLK2GH2EPPDCDYyU7uMgI1_1aVrx9mRLiMqod5aNyoU7UMCauqmN6Tu0ynHsx2tkPrs5ux6_okSPHXW33JUdlXTzJ13i_');"></div>
+          <div class="absolute inset-0 bg-black/40 flex items-center justify-center text-center px-4">
+            <div>
+              <p class="text-sm uppercase tracking-[0.3em] text-white/70">Occasion</p>
+              <h3 class="text-white text-2xl font-bold">Dresses</h3>
+            </div>
+          </div>
+        </a>
+        <a class="relative h-48 rounded-xl overflow-hidden group" href="/pages/products?category=women">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-in-out group-hover:scale-110" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuCPHdZPU_fTuKDk3nXkPJMpd1QBj6nmnhIddRFDRbqp7mJHqHAoPrVccAEshtXWZUOyJhv3GlRQCgynv-RMlXVtayJ4sEVLxV4-1gFK0FJ8y4L4IDoR4EI7cyO0As-V_k0GVzNvcebcEQ2SFknI57cFSldXDRnMTZHPk6mYZxlzsO0TFaVX6BmIrRzErAjXV8DZSq_Lgel2lvHuTwZSMm5OM4En8_-hEmkmQZjGaSO5IH9IqBFINL2XhNZvwxNicLS81kadvpU7qv86');"></div>
+          <div class="absolute inset-0 bg-black/40 flex items-center justify-center text-center px-4">
+            <div>
+              <p class="text-sm uppercase tracking-[0.3em] text-white/70">Elevated</p>
+              <h3 class="text-white text-2xl font-bold">Tops</h3>
+            </div>
+          </div>
+        </a>
+        <a class="relative h-48 rounded-xl overflow-hidden group" href="/pages/products?category=women">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-in-out group-hover:scale-110" style="background-image:url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1200&q=80');"></div>
+          <div class="absolute inset-0 bg-black/40 flex items-center justify-center text-center px-4">
+            <div>
+              <p class="text-sm uppercase tracking-[0.3em] text-white/70">On The Go</p>
+              <h3 class="text-white text-2xl font-bold">Footwear</h3>
+            </div>
+          </div>
+        </a>
+        <a class="relative h-48 rounded-xl overflow-hidden group" href="/pages/products?category=women">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-in-out group-hover:scale-110" style="background-image:url('https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80');"></div>
+          <div class="absolute inset-0 bg-black/40 flex items-center justify-center text-center px-4">
+            <div>
+              <p class="text-sm uppercase tracking-[0.3em] text-white/70">Chilled</p>
+              <h3 class="text-white text-2xl font-bold">Loungewear</h3>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="space-y-3">
+      <div class="flex items-center justify-between">
+        <h3 class="text-lg font-semibold text-[#111618] dark:text-white uppercase tracking-[0.3em]">Men</h3>
+        <a class="text-sm font-semibold text-primary hover:underline" href="/pages/products?category=men">View all</a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <a class="relative h-48 rounded-xl overflow-hidden group" href="/pages/products?category=men">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-in-out group-hover:scale-110" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuCJ6uZCqgMCMCxlol_lYO7mJngdXBeVtwyh4qmoximLSdhdCKX32I4hT3bNyokzBmEYy3XfUl8Hl1kIzBtIMsok0E8uqYOzAzmqS9Rnj2dxJM5hBZaYPgg2cCBgdsbrInwNJPc0xjd-CVpYCMWNHZSytSx3ZVqxAbGG1V3tXvoreTyJdkseVqvAV4l2MF0vDsNhegGcoXdrMqk7JmfyPi2lDZku_JoVoRWKDBTB5sjaF3iAYvLd4ulLIRFUIr_psPzqNqnfKdz-_T02');"></div>
+          <div class="absolute inset-0 bg-black/40 flex items-center justify-center text-center px-4">
+            <div>
+              <p class="text-sm uppercase tracking-[0.3em] text-white/70">Everyday</p>
+              <h3 class="text-white text-2xl font-bold">Denim</h3>
+            </div>
+          </div>
+        </a>
+        <a class="relative h-48 rounded-xl overflow-hidden group" href="/pages/products?category=men">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-in-out group-hover:scale-110" style="background-image:url('https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1200&q=80');"></div>
+          <div class="absolute inset-0 bg-black/40 flex items-center justify-center text-center px-4">
+            <div>
+              <p class="text-sm uppercase tracking-[0.3em] text-white/70">Layering</p>
+              <h3 class="text-white text-2xl font-bold">Outerwear</h3>
+            </div>
+          </div>
+        </a>
+        <a class="relative h-48 rounded-xl overflow-hidden group" href="/pages/products?category=men">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-in-out group-hover:scale-110" style="background-image:url('https://images.unsplash.com/photo-1464855499786-2839659d9e5d?auto=format&fit=crop&w=1200&q=80');"></div>
+          <div class="absolute inset-0 bg-black/40 flex items-center justify-center text-center px-4">
+            <div>
+              <p class="text-sm uppercase tracking-[0.3em] text-white/70">Tailored</p>
+              <h3 class="text-white text-2xl font-bold">Heritage Revival</h3>
+            </div>
+          </div>
+        </a>
+        <a class="relative h-48 rounded-xl overflow-hidden group" href="/pages/products?category=men">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-in-out group-hover:scale-110" style="background-image:url('https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80');"></div>
+          <div class="absolute inset-0 bg-black/40 flex items-center justify-center text-center px-4">
+            <div>
+              <p class="text-sm uppercase tracking-[0.3em] text-white/70">Off-Duty</p>
+              <h3 class="text-white text-2xl font-bold">Sneakers</h3>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- SectionHeader for Best Sellers -->
+<h2 class="text-[#111618] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-10">Best Sellers</h2>
+<div class="px-4">
+  <div class="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 [-ms-overflow-style:none] [scrollbar-width:none]" style="scrollbar-width:none;">
+    <style>::-webkit-scrollbar { display: none; }</style>
+    <div class="flex flex-col gap-3 pb-3 group snap-start min-w-[220px] product-card" data-product-link="/pages/product" tabindex="0" role="link">
+      <div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg overflow-hidden">
+        <div class="w-full h-full bg-cover bg-center transform transition-transform duration-500 ease-in-out group-hover:scale-110" data-alt="A woman wearing a silk slip dress." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAeUiUOsuDnCit2D3GLGUEWdK9ECH-cyD11B2wF2t3dniQFJ1EyWdl5Gf1XwbCtrFuE_PH2YtV3IxnBEeEgefJOOceKiQCk-vZn7oYVTJWaz1Ukq0o442uUWLStpmPWT_22_qOLduXTCRGrXEXu9zbb6-iT83U0XT_tJtWb1a8DAbNE5_sYCT4mfXcmiwFjme5uEUyr9WUcVFV7BUYAWSy1sQ8sJC1QpiAcHw-TLP60BAu4_W5qG7Up_8cF_3iZXK3lqeEBiZh8H6Lq");'></div>
+      </div>
+      <div>
+        <p class="text-[#111618] dark:text-gray-100 text-base font-medium leading-normal">Silk Slip Dress</p>
+        <p class="text-[#617c89] dark:text-gray-400 text-sm font-normal leading-normal">$150.00</p>
+      <a class="text-primary text-sm font-semibold hover:underline" href="/pages/product">View Details</a>
+      </div>
+    </div>
+    <div class="flex flex-col gap-3 pb-3 group snap-start min-w-[220px] product-card" data-product-link="/pages/product" tabindex="0" role="link">
+      <div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg overflow-hidden">
+        <div class="w-full h-full bg-cover bg-center transform transition-transform duration-500 ease-in-out group-hover:scale-110" data-alt="A man wearing a crewneck sweater." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC_q5Hssyn_-ibOObw66mFvx4MaI2-Hhcx8GYIDsa_v7IATEdrx9tLJJJ6Oxia9_ltWu9KWGRwH_WLNr0RBx3MsXAQGWIdcNNnxbYGUSVfbqBTSedmypMfW2aTzpujznVTT2ERedOAnpcv92qY7daRYQlc65w7mm8yYoMGjcgm7UIpzfYT7bjfzyvHNyBGX-QDUS96QE1PHFdVYEFI8O3Nt-6yHixrtiaBd8tAD5rTKkA9TQ5VPHoF05vZZNAqcVmjtxtIo2FWbNbtQ");'></div>
+      </div>
+      <div>
+        <p class="text-[#111618] dark:text-gray-100 text-base font-medium leading-normal">Classic Crewneck Sweater</p>
+        <p class="text-[#617c89] dark:text-gray-400 text-sm font-normal leading-normal">$95.00</p>
+      <a class="text-primary text-sm font-semibold hover:underline" href="/pages/product">View Details</a>
+      </div>
+    </div>
+    <div class="flex flex-col gap-3 pb-3 group snap-start min-w-[220px] product-card" data-product-link="/pages/product" tabindex="0" role="link">
+      <div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg overflow-hidden">
+        <div class="w-full h-full bg-cover bg-center transform transition-transform duration-500 ease-in-out group-hover:scale-110" data-alt="A pair of straight-leg vintage jeans." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDHhXvTrMkPoI2smIuLnxUgFyFTBzT7gAFbB2OqY_NgTZftb27nYtfmALyppMAEqhK1C9s68MhXR0ahoTcvD4TR_HkfIn8sNcFF3KngayifjiNeEupiihj3xaGACYLkiFWuAZNuTG5Q_K8NvRZGcEe2bCy0XHU0FcMWEKORRdmfVlrY5sPyyZihz9QNRB6TyRGclg_meRRpBI-3sa0dlon48M6ZlkYagPjul3sHplt9br-i2CIqxbCv2b3Zho_BhoRY6a8vQ_4c9H33");'></div>
+      </div>
+      <div>
+        <p class="text-[#111618] dark:text-gray-100 text-base font-medium leading-normal">Vintage Straight Jean</p>
+        <p class="text-[#617c89] dark:text-gray-400 text-sm font-normal leading-normal">$110.00</p>
+      <a class="text-primary text-sm font-semibold hover:underline" href="/pages/product">View Details</a>
+      </div>
+    </div>
+    <div class="flex flex-col gap-3 pb-3 group snap-start min-w-[220px] product-card" data-product-link="/pages/product" tabindex="0" role="link">
+      <div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg overflow-hidden">
+        <div class="w-full h-full bg-cover bg-center transform transition-transform duration-500 ease-in-out group-hover:scale-110" data-alt="A model wearing a minimalist trench." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAKSW-XM5_WayLbdPustUJOTyFqsD8hvht3E65JG_DR4x5ltqCGlEJ9gt7aoHZ0foIJn4Va7GOsx1scg_8WjQycen7auO8t5AiiDMH82x2rjEe4EnClltfYnWloxgkjPY-Ha676GuYrrpBK6HPdDYsc4JL66a_cCSApyMuFPdvv6XuSOwgrCoXzQdF-s716u6gErj2GcR3LxOstL9ACMq9IBcbhFeXuBbluYC_w1UIylJHP09PlXYMQh0EPc2jBub-yT-mg56Sg_js_");'></div>
+      </div>
+      <div>
+        <p class="text-[#111618] dark:text-gray-100 text-base font-medium leading-normal">The Minimalist Trench</p>
+        <p class="text-[#617c89] dark:text-gray-400 text-sm font-normal leading-normal">$225.00</p>
+      <a class="text-primary text-sm font-semibold hover:underline" href="/pages/product">View Details</a>
+      </div>
+    </div>
+    <div class="flex flex-col gap-3 pb-3 group snap-start min-w-[220px] product-card" data-product-link="/pages/product" tabindex="0" role="link">
+      <div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg overflow-hidden">
+        <div class="w-full h-full bg-cover bg-center transform transition-transform duration-500 ease-in-out group-hover:scale-110" data-alt="A woman wearing a structured blazer." style='background-image: url("https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80");'></div>
+      </div>
+      <div>
+        <p class="text-[#111618] dark:text-gray-100 text-base font-medium leading-normal">Structured Crepe Blazer</p>
+        <p class="text-[#617c89] dark:text-gray-400 text-sm font-normal leading-normal">$198.00</p>
+      <a class="text-primary text-sm font-semibold hover:underline" href="/pages/product">View Details</a>
+      </div>
+    </div>
+    <div class="flex flex-col gap-3 pb-3 group snap-start min-w-[220px] product-card" data-product-link="/pages/product" tabindex="0" role="link">
+      <div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg overflow-hidden">
+        <div class="w-full h-full bg-cover bg-center transform transition-transform duration-500 ease-in-out group-hover:scale-110" data-alt="A luxe cashmere scarf." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD9lgUuZi5GtFg_Yji452VpqrsIzDuzXodEcbrAit6_wrTjuWoS6LdQbMDK1_dH8NtF7lWtGk69R6jT9HKivRmapMgMMpLEw-xiB8n1KwP4bjiiPrYVOjKZCfRiTG5PPbe5_jNGvrUGHD9gv8Wf8CHd4ZuG0hyD8FRc83MREhRkAlFoJOX_xqy0bnIVk4MJA3E9eWue75rfjyQ3Oage1TyoouUtDA-C6Gahyg88OQhns6Jgk68k40hLVj8sZcS_8l8YM-vfRFR9jfQ4");'></div>
+      </div>
+      <div>
+        <p class="text-[#111618] dark:text-gray-100 text-base font-medium leading-normal">Cashmere Fringe Scarf</p>
+        <p class="text-[#617c89] dark:text-gray-400 text-sm font-normal leading-normal">$145.00</p>
+      <a class="text-primary text-sm font-semibold hover:underline" href="/pages/product">View Details</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Featured Essentials Section -->
+<div class="bg-gray-50 dark:bg-background-dark/40 w-full mt-10 py-10">
+<div class="max-w-7xl mx-auto space-y-4 px-4">
+<div class="flex flex-col gap-1">
+<p class="text-sm uppercase tracking-[0.2em] text-primary font-semibold">Just Dropped</p>
+<h2 class="text-3xl font-black leading-tight tracking-[-0.02em] text-[#111618] dark:text-white">Featured Essentials</h2>
+<p class="text-[#617c89] dark:text-gray-400 text-base">Mix, match, and build a capsule wardrobe that works every day of the week.</p>
+</div>
+<div class="overflow-x-auto snap-x snap-mandatory pb-4 [-ms-overflow-style:none] [scrollbar-width:none]" style="scrollbar-width:none;">
+<style>::-webkit-scrollbar { display: none; }</style>
+<div class="flex gap-4 min-w-[900px]">
+<div class="bg-white dark:bg-background-dark rounded-2xl overflow-hidden shadow-sm min-w-[220px] product-card" data-product-link="/pages/product" tabindex="0" role="link">
+<div class="aspect-[3/4] bg-cover" style="background-image:url('https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80');"></div>
+<div class="p-4 space-y-1">
+<p class="font-semibold text-[#111618] dark:text-white">Soft Knit Crew</p>
+<p class="text-primary font-bold">$120.00</p>
+<a class="text-primary text-sm font-semibold hover:underline" href="/pages/product">View Details</a>
+</div>
+</div>
+<div class="bg-white dark:bg-background-dark rounded-2xl overflow-hidden shadow-sm min-w-[220px] product-card" data-product-link="/pages/product" tabindex="0" role="link">
+<div class="aspect-[3/4] bg-cover" style="background-image:url('https://images.unsplash.com/photo-1503342394128-c104d54dba01?auto=format&fit=crop&w=800&q=80');"></div>
+<div class="p-4 space-y-1">
+<p class="font-semibold text-[#111618] dark:text-white">Tailored Tech Trouser</p>
+<p class="text-primary font-bold">$140.00</p>
+<a class="text-primary text-sm font-semibold hover:underline" href="/pages/product">View Details</a>
+</div>
+</div>
+<div class="bg-white dark:bg-background-dark rounded-2xl overflow-hidden shadow-sm min-w-[220px] product-card" data-product-link="/pages/product" tabindex="0" role="link">
+<div class="aspect-[3/4] bg-cover" style="background-image:url('https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=800&q=80');"></div>
+<div class="p-4 space-y-1">
+<p class="font-semibold text-[#111618] dark:text-white">Weekender Field Jacket</p>
+<p class="text-primary font-bold">$210.00</p>
+<a class="text-primary text-sm font-semibold hover:underline" href="/pages/product">View Details</a>
+</div>
+</div>
+<div class="bg-white dark:bg-background-dark rounded-2xl overflow-hidden shadow-sm min-w-[220px] product-card" data-product-link="/pages/product" tabindex="0" role="link">
+<div class="aspect-[3/4] bg-cover" style="background-image:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80');"></div>
+<div class="p-4 space-y-1">
+<p class="font-semibold text-[#111618] dark:text-white">Merino Travel Polo</p>
+<p class="text-primary font-bold">$105.00</p>
+<a class="text-primary text-sm font-semibold hover:underline" href="/pages/product">View Details</a>
+</div>
+</div>
+<div class="bg-white dark:bg-background-dark rounded-2xl overflow-hidden shadow-sm min-w-[220px] product-card" data-product-link="/pages/product" tabindex="0" role="link">
+<div class="aspect-[3/4] bg-cover" style="background-image:url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80');"></div>
+<div class="p-4 space-y-1">
+<p class="font-semibold text-[#111618] dark:text-white">Seaside Midi Dress</p>
+<p class="text-primary font-bold">$175.00</p>
+<a class="text-primary text-sm font-semibold hover:underline" href="/pages/product">View Details</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Curated Collections Section -->
+<div class="w-full max-w-7xl mx-auto px-4 pt-12 pb-4">
+<div class="flex flex-col gap-1 pb-4">
+<p class="text-sm uppercase tracking-[0.2em] text-primary font-semibold">Collections</p>
+<h2 class="text-3xl font-black leading-tight tracking-[-0.02em] text-[#111618] dark:text-white">Explore Seasonal Stories</h2>
+<p class="text-[#617c89] dark:text-gray-400 text-base max-w-3xl">From city-ready tailoring to coastal getaways, discover lineups crafted for every mood.</p>
+</div>
+<div class="relative">
+<div class="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 [-ms-overflow-style:none] [scrollbar-width:none]" style="scrollbar-width:none;">
+<style>
+::-webkit-scrollbar { display: none; }
+</style>
+<div class="min-w-[80%] sm:min-w-[45%] lg:min-w-[28%] relative rounded-3xl overflow-hidden group min-h-[360px] bg-cover bg-center snap-start" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDCfVb7F4TVr_xB5myx3RUizibNei5gCuokXVg1G1MwdZj89tsIRESQlI8kdWLPNjy8Q7xmeABHPLtmI8m7HbAzrAqKD15G3OsqaiXipSEn4S99uR3MN8OatBw0ShiTTUSq12iKPsNL4gAzmS5k7bZJ5dQVarIBBdmrpkqqPcEXznoxBhFrLK2GH2EPPDCDYyU7uMgI1_1aVrx9mRLiMqod5aNyoU7UMCauqmN6Tu0ynHsx2tkPrs5ux6_okSPHXW33JUdlXTzJ13i_');">
+<div class="absolute inset-0 bg-gradient-to-b from-black/10 to-black/70"></div>
+<div class="relative h-full p-6 flex flex-col justify-end text-white">
+<p class="text-sm uppercase tracking-[0.3em] text-white/70">Capsule</p>
+<h3 class="text-2xl font-bold">Midnight City</h3>
+<p class="text-sm text-white/80">Monochrome layers, shine-ready textures, and tailored silhouettes for evening adventures.</p>
+<a class="mt-4 inline-flex items-center gap-2 text-sm font-semibold" href="/pages/products?category=men">Shop Collection<span class="material-symbols-outlined text-base">arrow_forward</span></a>
+</div>
+</div>
+<div class="min-w-[80%] sm:min-w-[45%] lg:min-w-[28%] relative rounded-3xl overflow-hidden group min-h-[360px] bg-cover bg-center snap-start" style="background-image:url('https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1200&q=80');">
+<div class="absolute inset-0 bg-gradient-to-b from-black/5 to-black/70"></div>
+<div class="relative h-full p-6 flex flex-col justify-end text-white">
+<p class="text-sm uppercase tracking-[0.3em] text-white/70">Limited</p>
+<h3 class="text-2xl font-bold">Studio Pastels</h3>
+<p class="text-sm text-white/80">Soft sorbet hues, sculptural knits, and airy separates inspired by gallery afternoons.</p>
+<a class="mt-4 inline-flex items-center gap-2 text-sm font-semibold" href="/pages/products?category=women">Shop Collection<span class="material-symbols-outlined text-base">arrow_forward</span></a>
+</div>
+</div>
+<div class="min-w-[80%] sm:min-w-[45%] lg:min-w-[28%] relative rounded-3xl overflow-hidden group min-h-[360px] bg-cover bg-center snap-start" style="background-image:url('https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1200&q=80');">
+<div class="absolute inset-0 bg-gradient-to-b from-black/5 to-black/70"></div>
+<div class="relative h-full p-6 flex flex-col justify-end text-white">
+<p class="text-sm uppercase tracking-[0.3em] text-white/70">Resort</p>
+<h3 class="text-2xl font-bold">Coastal Drift</h3>
+<p class="text-sm text-white/80">Flowing linens, sun-faded stripes, and polished swim layers built for effortless escapes.</p>
+<a class="mt-4 inline-flex items-center gap-2 text-sm font-semibold" href="/pages/products?category=women">Shop Collection<span class="material-symbols-outlined text-base">arrow_forward</span></a>
+</div>
+</div>
+<div class="min-w-[80%] sm:min-w-[45%] lg:min-w-[28%] relative rounded-3xl overflow-hidden group min-h-[360px] bg-cover bg-center snap-start" style="background-image:url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1200&q=80');">
+<div class="absolute inset-0 bg-gradient-to-b from-black/5 to-black/70"></div>
+<div class="relative h-full p-6 flex flex-col justify-end text-white">
+<p class="text-sm uppercase tracking-[0.3em] text-white/70">Athleisure</p>
+<h3 class="text-2xl font-bold">Arcade Movement</h3>
+<p class="text-sm text-white/80">Performance stretch, recycled fibers, and bold color-blocking meet studio-ready silhouettes.</p>
+<a class="mt-4 inline-flex items-center gap-2 text-sm font-semibold" href="/pages/products?category=men">Shop Collection<span class="material-symbols-outlined text-base">arrow_forward</span></a>
+</div>
+</div>
+<div class="min-w-[80%] sm:min-w-[45%] lg:min-w-[28%] relative rounded-3xl overflow-hidden group min-h-[360px] bg-cover bg-center snap-start" style="background-image:url('https://images.unsplash.com/photo-1464855499786-2839659d9e5d?auto=format&fit=crop&w=1200&q=80');">
+<div class="absolute inset-0 bg-gradient-to-b from-black/5 to-black/70"></div>
+<div class="relative h-full p-6 flex flex-col justify-end text-white">
+<p class="text-sm uppercase tracking-[0.3em] text-white/70">Tailored</p>
+<h3 class="text-2xl font-bold">Heritage Revival</h3>
+<p class="text-sm text-white/80">Sharp double-breasted blazers, houndstooth separates, and Italian wool coats updated for now.</p>
+<a class="mt-4 inline-flex items-center gap-2 text-sm font-semibold" href="/pages/products?category=men">Shop Collection<span class="material-symbols-outlined text-base">arrow_forward</span></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Component -->
+<footer class="w-full bg-gray-100 dark:bg-gray-900 mt-16 border-t border-gray-200 dark:border-gray-800">
+<div class="max-w-7xl mx-auto py-12 px-4 sm:px-10">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-sm text-gray-600 dark:text-gray-400">
+<div class="space-y-4">
+<h4 class="uppercase text-xs font-bold tracking-[0.3em] text-gray-500">Online Shopping</h4>
+<ul class="space-y-1">
+<li><a class="hover:text-primary" href="/pages/products?category=men">Men</a></li>
+<li><a class="hover:text-primary" href="/pages/products?category=women">Women</a></li>
+<li><a class="hover:text-primary" href="/pages/products?category=kids">Kids</a></li>
+<li><a class="hover:text-primary" href="/pages/home">Home</a></li>
+<li><a class="hover:text-primary" href="/pages/products">Beauty</a></li>
+<li><a class="hover:text-primary" href="/pages/products">GENZ</a></li>
+<li><a class="hover:text-primary" href="#">Gift Cards</a></li>
+<li><a class="hover:text-primary" href="#">Seira+</a></li>
+</ul>
+<h4 class="uppercase text-xs font-bold tracking-[0.3em] text-gray-500 pt-6">Useful Links</h4>
+<ul class="space-y-1">
+<li><a class="hover:text-primary" href="#">Blog</a></li>
+<li><a class="hover:text-primary" href="#">Careers</a></li>
+<li><a class="hover:text-primary" href="#">Sitemap</a></li>
+<li><a class="hover:text-primary" href="#">Corporate Info</a></li>
+<li><a class="hover:text-primary" href="#">Travel Partners</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="uppercase text-xs font-bold tracking-[0.3em] text-gray-500">Customer Policies</h4>
+<ul class="space-y-1">
+<li><a class="hover:text-primary" href="#">Contact Us</a></li>
+<li><a class="hover:text-primary" href="#">FAQ</a></li>
+<li><a class="hover:text-primary" href="#">T&amp;C</a></li>
+<li><a class="hover:text-primary" href="#">Terms Of Use</a></li>
+<li><a class="hover:text-primary" href="#">Track Orders</a></li>
+<li><a class="hover:text-primary" href="#">Shipping</a></li>
+<li><a class="hover:text-primary" href="#">Cancellation</a></li>
+<li><a class="hover:text-primary" href="#">Returns</a></li>
+<li><a class="hover:text-primary" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary" href="#">Grievance Redressal</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="uppercase text-xs font-bold tracking-[0.3em] text-gray-500">About Seira</h4>
+<p class="text-sm leading-relaxed">Seira vision is to redefine the online fashion shopping experience by creating the most advanced, user-centric, multiple brands and collections and technology-driven e-commerce platform in the USA. We aim to empower every shopper with confidence, convenience, and personalization making it effortless to discover, try on, and purchase clothing and apparel from all leading brands in one seamless destination.</p>
+</div>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<div class="flex h-12 w-12 items-center justify-center rounded-full border border-gray-300 dark:border-gray-700">
+<span class="material-symbols-outlined text-2xl text-primary">verified</span>
+</div>
+<div>
+<h5 class="font-bold text-gray-800 dark:text-gray-100">100% Original</h5>
+<p class="text-sm">Guaranteed authentic products on seira.com</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="flex h-12 w-12 items-center justify-center rounded-full border border-gray-300 dark:border-gray-700">
+<span class="material-symbols-outlined text-2xl text-primary">restart_alt</span>
+</div>
+<div>
+<h5 class="font-bold text-gray-800 dark:text-gray-100">14-Day Returns</h5>
+<p class="text-sm">Easy returns within 14 days of delivery.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-10 border-t border-gray-200 dark:border-gray-700 pt-6">
+<h4 class="uppercase text-xs font-bold tracking-[0.3em] text-gray-500 mb-4">Popular Searches</h4>
+<p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
+Makeup | Dresses For Girls | Sandals | Headphones | Babydolls | Blazers For Men | Handbags | Ladies Watches | Bags | Sport Shoes | Reebok Shoes | Puma Shoes | Boxers | Wallets | Tops | Earrings | Kurta Sets | Smart Watches | Designer Blouse | Gowns | Rings | Cricket Shoes | Photo Frames | Lipstick | Saree | Watches | Shoes
+</p>
+</div>
+<div class="mt-8 border-t border-gray-200 dark:border-gray-700 pt-8 text-center text-sm text-gray-500 dark:text-gray-400">
+<p>© 2024 Seira. All rights reserved.</p>
+</div>
+</div>
+</footer>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const extractImageUrl = (styleString = '') => {
+    const match = styleString.match(/url\((['"]?)(.*?)\1\)/i);
+    return match ? match[2] : '';
+  };
+
+  const buildProductPayload = (card) => {
+    if (!card) return null;
+    const textBlocks = card.querySelectorAll('div > p');
+    const rawName = (card.dataset.productTitle || textBlocks[0]?.textContent || '').trim();
+    const rawPrice = (card.dataset.productPrice || textBlocks[1]?.textContent || '').trim();
+    const descriptionSource =
+      card.dataset.productDescription ||
+      card.querySelector('[data-product-description]')?.textContent ||
+      `Discover the ${rawName || 'latest Seira piece'} from our newest drop.`;
+
+    const taggedImage = card.querySelector('[data-product-image]');
+    const imageCandidate =
+      card.dataset.productImage ||
+      taggedImage?.dataset?.productImage ||
+      taggedImage?.getAttribute?.('src') ||
+      card.querySelector('img')?.getAttribute('src');
+
+    let heroImage = imageCandidate;
+    if (!heroImage) {
+      const styledEl = card.querySelector('[style*="background-image"]');
+      if (styledEl) {
+        heroImage = styledEl.dataset?.productImage || extractImageUrl(styledEl.getAttribute('style') || '');
+      }
+    }
+
+    const galleryData = card.dataset.productGallery
+      ? card.dataset.productGallery.split(',').map((item) => item.trim()).filter(Boolean)
+      : [];
+
+    if (!galleryData.length && heroImage) {
+      galleryData.push(heroImage);
+    }
+
+    const slugSource = rawName || card.dataset.productId || 'seira-product';
+    const productId = slugSource
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '') || 'seira-product';
+
+    return {
+      id: productId,
+      title: rawName || 'Seira Exclusive',
+      price: rawPrice || '',
+      description: descriptionSource.trim(),
+      image: heroImage || '',
+      gallery: galleryData,
+    };
+  };
+
+  const cards = document.querySelectorAll('.product-card');
+  cards.forEach((card) => {
+    const target = card.dataset.productLink || '/pages/product';
+    const goToProduct = (event) => {
+      if (event) {
+        event.preventDefault();
+      }
+      const payload = buildProductPayload(card);
+      if (payload) {
+        try {
+          localStorage.setItem('selectedProduct', JSON.stringify(payload));
+        } catch (error) {
+          console.warn('Unable to store product details', error);
+        }
+      }
+      window.location.href = target;
+    };
+    card.addEventListener('click', goToProduct);
+    card.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        goToProduct(event);
+      }
+    });
+    card.classList.add('cursor-pointer');
+  });
+
+  const profileModal = document.getElementById('profile-modal');
+  const toggleProfileModal = (shouldShow) => {
+    if (!profileModal) return;
+    profileModal.classList.toggle('hidden', !shouldShow);
+    document.body.classList.toggle('overflow-hidden', shouldShow);
+  };
+
+  document.querySelectorAll('[data-profile-trigger]').forEach((btn) => {
+    btn.addEventListener('click', () => toggleProfileModal(true));
+  });
+
+  profileModal?.querySelectorAll('[data-profile-close]').forEach((btn) => {
+    btn.addEventListener('click', () => toggleProfileModal(false));
+  });
+
+});
+</script>
+<script src="/static/js/cart-indicator.js"></script>
+<script src="/static/js/ai-search-modal.js"></script>
+<script src="/static/js/shop-modal.js"></script>
+<script src="/static/js/simon-modal.js"></script>
+<script src="/static/js/wishlist.js"></script>
+</body></html>

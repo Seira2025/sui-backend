@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Seira - Virtual Experience</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+<script>
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          primary: "#13a4ec",
+          "background-light": "#f6f7f8",
+          "background-dark": "#101c22",
+        },
+        fontFamily: { display: ["Plus Jakarta Sans", "sans-serif"] },
+      },
+    },
+  };
+</script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-[#111618] dark:text-gray-200">
+<div class="relative flex min-h-screen w-full flex-col">
+<header class="sticky top-0 z-50 flex w-full justify-center border-b border-solid border-gray-200/80 dark:border-gray-700/80 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+<div class="flex items-center gap-4 flex-nowrap whitespace-nowrap px-4 sm:px-10 py-3 w-full max-w-7xl">
+<div class="flex items-center gap-6 flex-shrink-0">
+<div class="flex items-center gap-4">
+<div class="flex flex-col leading-tight uppercase">
+<a class="relative inline-flex items-center text-lg font-black tracking-[0.25em] text-[#111618] dark:text-white" href="/pages/home">
+<span class="inline-flex px-1.5 py-0.5 rounded-sm bg-[#111618] dark:bg-white text-white dark:text-[#111618] tracking-[0.2em] items-center leading-none h-5">SE</span>IRA
+<span class="absolute -bottom-1 -right-6 text-[10px] font-semibold tracking-normal lowercase text-gray-500 dark:text-gray-300">.com</span>
+</a>
+</div>
+</div>
+<nav class="hidden lg:flex items-center gap-6 text-sm font-semibold uppercase tracking-wide text-[#111618] ml-10">
+<a class="hover:text-primary transition-colors" href="/pages/products?category=men">Men</a>
+<a class="hover:text-primary transition-colors" href="/pages/products?category=women">Women</a>
+<a class="hover:text-primary transition-colors" href="/pages/products?category=kids">Kids</a>
+<a class="hover:text-primary transition-colors" href="#" data-shop-trigger role="button" aria-haspopup="dialog">Shop</a>
+<a class="hover:text-primary transition-colors" href="/pages/products">GENZ</a>
+<div class="flex items-center gap-1">
+<button class="hover:text-primary transition-colors" type="button" data-ai-search-trigger>AI Search</button>
+<span class="text-[10px] font-bold text-primary tracking-[0.2em] uppercase">New</span>
+</div>
+</nav>
+</div>
+<div class="hidden md:flex flex-1 justify-center sm:ml-6">
+<label class="flex flex-col min-w-[240px] !h-10 w-full max-w-xl">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full shadow-sm">
+<div class="text-[#617c89] dark:text-gray-400 flex bg-gray-200 dark:bg-gray-800 items-center justify-center pl-3 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined" style="font-size: 20px;">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111618] dark:text-white focus:outline-0 focus:ring-0 border-none bg-gray-200 dark:bg-gray-800 focus:border-none h-full placeholder:text-[#617c89] dark:placeholder:text-gray-400 px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search for products and more" value=""/>
+</div>
+</label>
+</div>
+<div class="flex gap-6 ml-auto text-[11px] font-semibold uppercase tracking-wide text-[#222222] dark:text-gray-200">
+<button class="flex flex-col items-center justify-center gap-1" data-profile-trigger>
+<span class="material-symbols-outlined text-xl">person</span>
+<span>Profile</span>
+</button>
+<a class="flex flex-col items-center justify-center gap-1" href="/pages/wishlist">
+<span class="material-symbols-outlined text-xl">favorite</span>
+<span>Wishlist</span>
+</a>
+<a class="relative flex flex-col items-center justify-center gap-1" href="/pages/cart">
+<span class="material-symbols-outlined text-xl">shopping_bag</span>
+<span>Bag</span>
+<span class="absolute top-0 right-1 rounded-full bg-primary text-white text-[10px] font-bold px-1" data-cart-count>0</span>
+</a>
+</div>
+</div>
+</header>
+<div id="profile-modal" class="fixed inset-0 z-[9999] hidden">
+<div class="absolute inset-0 bg-black/60" data-profile-close></div>
+<div class="relative max-w-sm w-full mx-auto mt-24 bg-white dark:bg-background-dark rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-800 overflow-hidden">
+<div class="h-1 bg-primary"></div>
+<div class="p-6 space-y-4">
+<div class="flex items-start justify-between">
+<div>
+<p class="text-sm font-semibold text-gray-500 uppercase tracking-[0.2em]">Welcome</p>
+<p class="text-base text-gray-600 dark:text-gray-300">To access account and manage orders</p>
+</div>
+<button class="text-gray-400 hover:text-primary" data-profile-close>
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<button class="w-full inline-flex items-center justify-center rounded-lg border border-primary text-primary font-bold uppercase tracking-[0.2em] py-2 hover:bg-primary/10 transition" type="button" data-simon-trigger>Login / Signup</button>
+<div class="border-t border-gray-200 dark:border-gray-700 pt-4 grid grid-cols-2 gap-3 text-sm text-gray-700 dark:text-gray-300">
+<span>Orders</span>
+<span>Wishlist</span>
+<span>Gift Cards</span>
+<span>Contact Us</span>
+<span class="flex items-center gap-2">Seira+ <span class="text-[10px] text-white bg-primary px-2 py-0.5 rounded-full uppercase">New</span></span>
+<span>Seira Credit</span>
+<span>Coupons</span>
+<span>Saved Cards</span>
+<span>Saved VPA</span>
+<span>Saved Addresses</span>
+</div>
+</div>
+</div>
+</div>
+
+<main class="flex-1">
+  <div class="max-w-6xl mx-auto px-4 sm:px-8 py-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+      <section class="space-y-4">
+        <div class="bg-white dark:bg-background-dark/70 border border-gray-200 dark:border-gray-700 rounded-3xl p-6 shadow-sm">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-2xl font-bold">360° Preview</h2>
+            <span class="text-sm text-gray-500 dark:text-gray-400">Drag to rotate</span>
+          </div>
+          <div class="relative w-full aspect-[3/4] bg-gradient-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-2xl overflow-hidden flex items-center justify-center" data-preview-frame>
+            <img data-preview-image src="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=900&q=80" alt="360 preview placeholder" class="h-full object-cover opacity-80" />
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30"></div>
+            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-white text-sm">
+              <span class="material-symbols-outlined">swipe</span>
+              <span>Swipe left/right to explore</span>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-3xl bg-white dark:bg-background-dark/70 border border-gray-200 dark:border-gray-700 p-6 space-y-3">
+          <h3 class="text-xl font-semibold">How it works</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">We overlay your uploaded silhouette with our garment mesh. Adjust sizing or colors on the right to explore different looks.</p>
+          <div class="grid grid-cols-2 gap-4 text-sm text-gray-600 dark:text-gray-400">
+            <div class="flex gap-2"><span class="material-symbols-outlined text-primary">upload</span>Replace photo</div>
+            <div class="flex gap-2"><span class="material-symbols-outlined text-primary">link</span>Share preview link</div>
+          </div>
+        </div>
+      </section>
+      <section class="bg-white dark:bg-background-dark/70 border border-gray-200 dark:border-gray-700 rounded-3xl p-6 shadow-sm space-y-6">
+        <div>
+          <h3 class="text-xl font-bold">Adjust Fit</h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400">Try different sizes and palettes to see how they affect the drape.</p>
+        </div>
+        <div class="space-y-3">
+          <label class="text-sm font-medium">Select size</label>
+          <div class="flex flex-wrap gap-3" data-size-group>
+            <button type="button" class="px-4 py-2 rounded-full border border-gray-300 dark:border-gray-600 hover:border-primary" data-size-option="XS" aria-pressed="false">XS</button>
+            <button type="button" class="px-4 py-2 rounded-full border border-gray-300 dark:border-gray-600 hover:border-primary" data-size-option="S" aria-pressed="false">S</button>
+            <button type="button" class="px-4 py-2 rounded-full border border-primary bg-primary/10 text-primary" data-size-option="M" aria-pressed="true">M</button>
+            <button type="button" class="px-4 py-2 rounded-full border border-gray-300 dark:border-gray-600 hover:border-primary" data-size-option="L" aria-pressed="false">L</button>
+            <button type="button" class="px-4 py-2 rounded-full border border-gray-300 dark:border-gray-600 hover:border-primary" data-size-option="XL" aria-pressed="false">XL</button>
+          </div>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Selected: <span class="font-semibold text-primary" data-size-value>M</span></p>
+        </div>
+        <div class="space-y-3">
+          <label class="text-sm font-medium">Select color</label>
+          <div class="flex gap-4" data-color-group>
+            <button type="button" class="relative outline-none" data-color-option="#1c1d23" data-color-label="Onyx" aria-pressed="true">
+              <span class="sr-only">Onyx</span>
+              <span class="block w-10 h-10 rounded-full border-2 border-primary" style="background:#1c1d23"></span>
+            </button>
+            <button type="button" class="relative outline-none" data-color-option="#c4b8a7" data-color-label="Sandstone" aria-pressed="false">
+              <span class="sr-only">Sandstone</span>
+              <span class="block w-10 h-10 rounded-full border border-gray-300" style="background:#c4b8a7"></span>
+            </button>
+            <button type="button" class="relative outline-none" data-color-option="#3b7bf6" data-color-label="Cobalt" aria-pressed="false">
+              <span class="sr-only">Cobalt</span>
+              <span class="block w-10 h-10 rounded-full border border-gray-300" style="background:#3b7bf6"></span>
+            </button>
+            <button type="button" class="relative outline-none" data-color-option="#f86e5d" data-color-label="Coral" aria-pressed="false">
+              <span class="sr-only">Coral</span>
+              <span class="block w-10 h-10 rounded-full border border-gray-300" style="background:#f86e5d"></span>
+            </button>
+          </div>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Color: <span class="font-semibold text-primary" data-color-value>Onyx</span></p>
+        </div>
+        <div class="space-y-3">
+          <label class="text-sm font-medium">Notes</label>
+          <textarea rows="4" placeholder="Pinch the waist slightly; prefer looser sleeves." class="w-full rounded-lg border-gray-300 dark:border-gray-600 bg-background-light dark:bg-gray-800 focus:ring-primary focus:border-primary"></textarea>
+        </div>
+        <div class="flex flex-col gap-3 sm:flex-row">
+          <button class="w-full rounded-lg h-12 bg-primary text-white font-bold tracking-wide hover:bg-primary/90 transition" data-add-preferred>
+            Add Preferred Look to Cart
+          </button>
+          <a class="w-full sm:w-auto inline-flex items-center justify-center rounded-lg border border-primary text-primary font-semibold tracking-wide px-4 h-12 hover:bg-primary/5 transition hidden" href="/pages/cart" data-go-to-cart>
+            Go to Cart
+          </a>
+        </div>
+      </section>
+    </div>
+</div>
+  <section class="w-full bg-white/80 dark:bg-background-dark/80 border-t border-gray-200/70 dark:border-gray-800/70">
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 py-12 space-y-8">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.4em] text-gray-500 dark:text-gray-400">Product library</p>
+          <h2 class="text-3xl font-bold text-[#111618] dark:text-white">Looks straight from the product page</h2>
+          <p class="text-sm text-gray-600 dark:text-gray-300 max-w-2xl">Pick any piece below to load it into the 360° preview instantly. These cards mirror the full product listing so you can try on the same looks without leaving the experience.</p>
+        </div>
+        <a class="inline-flex items-center justify-center rounded-full border border-primary text-primary text-sm font-semibold px-5 py-2 hover:bg-primary/5 transition" href="/pages/products">Browse all products</a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6" data-virtual-grid>
+        <article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-background-dark border border-gray-200 dark:border-gray-800 product-card focus:outline-none focus:ring-2 focus:ring-primary/60" data-virtual-product-card data-product-title="Drift Pleated Midi Dress" data-product-price="$168.00" data-product-image="https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=800&q=80" data-product-link="/pages/product" data-product-description="Sun-ready pleats and an airy lining move with every step." data-product-gallery="https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=1200&q=80,https://images.unsplash.com/photo-1502334203600-4b5296beba23?auto=format&fit=crop&w=1200&q=80" tabindex="0" role="link">
+          <div class="aspect-[3/4] bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=800&q=80');"></div>
+          <div class="p-4 space-y-2">
+            <p class="text-sm uppercase tracking-[0.3em] text-gray-500 dark:text-gray-400">Women's</p>
+            <h3 class="text-lg font-semibold text-[#111618] dark:text-white">Drift Pleated Midi Dress</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-300">Sun-ready pleats and an airy lining move with every step.</p>
+            <p class="text-lg font-bold text-primary">$168.00</p>
+            <div class="flex gap-3">
+              <button type="button" class="flex-1 inline-flex items-center justify-center rounded-full bg-primary text-white text-sm font-semibold py-2 hover:bg-primary/90 transition" data-virtual-cta>Load look</button>
+              <a class="inline-flex items-center justify-center rounded-full border border-gray-300 dark:border-gray-600 px-4 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:border-primary" href="/pages/product" target="_blank" rel="noopener noreferrer">View</a>
+            </div>
+          </div>
+        </article>
+        <article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-background-dark border border-gray-200 dark:border-gray-800 product-card focus:outline-none focus:ring-2 focus:ring-primary/60" data-virtual-product-card data-product-title="Cloudweight Utility Jacket" data-product-price="$148.00" data-product-image="https://images.unsplash.com/photo-1518544801958-efcbf8a7ec10?auto=format&fit=crop&w=800&q=80" data-product-link="/pages/product" data-product-description="Cropped utility jacket with adjustable bungees for a custom cinch." data-product-gallery="https://images.unsplash.com/photo-1518544801958-efcbf8a7ec10?auto=format&fit=crop&w=1200&q=80,https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1200&q=80" tabindex="0" role="link">
+          <div class="aspect-[3/4] bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1518544801958-efcbf8a7ec10?auto=format&fit=crop&w=800&q=80');"></div>
+          <div class="p-4 space-y-2">
+            <p class="text-sm uppercase tracking-[0.3em] text-gray-500 dark:text-gray-400">Women's</p>
+            <h3 class="text-lg font-semibold text-[#111618] dark:text-white">Cloudweight Utility Jacket</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-300">Cropped utility jacket with adjustable bungees for a custom cinch.</p>
+            <p class="text-lg font-bold text-primary">$148.00</p>
+            <div class="flex gap-3">
+              <button type="button" class="flex-1 inline-flex items-center justify-center rounded-full bg-primary text-white text-sm font-semibold py-2 hover:bg-primary/90 transition" data-virtual-cta>Load look</button>
+              <a class="inline-flex items-center justify-center rounded-full border border-gray-300 dark:border-gray-600 px-4 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:border-primary" href="/pages/product" target="_blank" rel="noopener noreferrer">View</a>
+            </div>
+          </div>
+        </article>
+        <article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-background-dark border border-gray-200 dark:border-gray-800 product-card focus:outline-none focus:ring-2 focus:ring-primary/60" data-virtual-product-card data-product-title="Serene Knit Matching Set" data-product-price="$210.00" data-product-image="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=800&q=80" data-product-link="/pages/product" data-product-description="Soft rib knit cami and matching column skirt for desk-to-dinner dressing." data-product-gallery="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=1200&q=80,https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1000&q=80" tabindex="0" role="link">
+          <div class="aspect-[3/4] bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=800&q=80');"></div>
+          <div class="p-4 space-y-2">
+            <p class="text-sm uppercase tracking-[0.3em] text-gray-500 dark:text-gray-400">Women's</p>
+            <h3 class="text-lg font-semibold text-[#111618] dark:text-white">Serene Knit Matching Set</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-300">Soft rib knit cami and matching column skirt for desk-to-dinner dressing.</p>
+            <p class="text-lg font-bold text-primary">$210.00</p>
+            <div class="flex gap-3">
+              <button type="button" class="flex-1 inline-flex items-center justify-center rounded-full bg-primary text-white text-sm font-semibold py-2 hover:bg-primary/90 transition" data-virtual-cta>Load look</button>
+              <a class="inline-flex items-center justify-center rounded-full border border-gray-300 dark:border-gray-600 px-4 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:border-primary" href="/pages/product" target="_blank" rel="noopener noreferrer">View</a>
+            </div>
+          </div>
+        </article>
+        <article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-background-dark border border-gray-200 dark:border-gray-800 product-card focus:outline-none focus:ring-2 focus:ring-primary/60" data-virtual-product-card data-product-title="Aero Linen Resort Shirt" data-product-price="$128.00" data-product-image="https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=800&q=80" data-product-link="/pages/product" data-product-description="Relaxed linen weave with a resort collar and coconut buttons." data-product-gallery="https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=1200&q=80,https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=1200&q=80" tabindex="0" role="link">
+          <div class="aspect-[3/4] bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=800&q=80');"></div>
+          <div class="p-4 space-y-2">
+            <p class="text-sm uppercase tracking-[0.3em] text-gray-500 dark:text-gray-400">Men's</p>
+            <h3 class="text-lg font-semibold text-[#111618] dark:text-white">Aero Linen Resort Shirt</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-300">Relaxed linen weave with a resort collar and coconut buttons.</p>
+            <p class="text-lg font-bold text-primary">$128.00</p>
+            <div class="flex gap-3">
+              <button type="button" class="flex-1 inline-flex items-center justify-center rounded-full bg-primary text-white text-sm font-semibold py-2 hover:bg-primary/90 transition" data-virtual-cta>Load look</button>
+              <a class="inline-flex items-center justify-center rounded-full border border-gray-300 dark:border-gray-600 px-4 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:border-primary" href="/pages/product" target="_blank" rel="noopener noreferrer">View</a>
+            </div>
+          </div>
+        </article>
+        <article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-background-dark border border-gray-200 dark:border-gray-800 product-card focus:outline-none focus:ring-2 focus:ring-primary/60" data-virtual-product-card data-product-title="Cityscape Performance Jacket" data-product-price="$198.00" data-product-image="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=800&q=80" data-product-link="/pages/product" data-product-description="Water-resistant tech shell with hidden hood and storm guards." data-product-gallery="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=1200&q=80,https://images.unsplash.com/photo-1506629082955-511b1aa562c8?auto=format&fit=crop&w=900&q=80" tabindex="0" role="link">
+          <div class="aspect-[3/4] bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=800&q=80');"></div>
+          <div class="p-4 space-y-2">
+            <p class="text-sm uppercase tracking-[0.3em] text-gray-500 dark:text-gray-400">Men's</p>
+            <h3 class="text-lg font-semibold text-[#111618] dark:text-white">Cityscape Performance Jacket</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-300">Water-resistant tech shell with hidden hood and storm guards.</p>
+            <p class="text-lg font-bold text-primary">$198.00</p>
+            <div class="flex gap-3">
+              <button type="button" class="flex-1 inline-flex items-center justify-center rounded-full bg-primary text-white text-sm font-semibold py-2 hover:bg-primary/90 transition" data-virtual-cta>Load look</button>
+              <a class="inline-flex items-center justify-center rounded-full border border-gray-300 dark:border-gray-600 px-4 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:border-primary" href="/pages/product" target="_blank" rel="noopener noreferrer">View</a>
+            </div>
+          </div>
+        </article>
+        <article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-background-dark border border-gray-200 dark:border-gray-800 product-card focus:outline-none focus:ring-2 focus:ring-primary/60" data-virtual-product-card data-product-title="Heritage Court Sneaker" data-product-price="$135.00" data-product-image="https://images.unsplash.com/photo-1475180098004-ca77a66827be?auto=format&fit=crop&w=800&q=80" data-product-link="/pages/product" data-product-description="Suede court sneaker with recycled rubber outsole and Ortholite footbed." data-product-gallery="https://images.unsplash.com/photo-1475180098004-ca77a66827be?auto=format&fit=crop&w=1200&q=80,https://images.unsplash.com/photo-1445633883498-7f9922d37a3b?auto=format&fit=crop&w=1000&q=80" tabindex="0" role="link">
+          <div class="aspect-[3/4] bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1475180098004-ca77a66827be?auto=format&fit=crop&w=800&q=80');"></div>
+          <div class="p-4 space-y-2">
+            <p class="text-sm uppercase tracking-[0.3em] text-gray-500 dark:text-gray-400">Footwear</p>
+            <h3 class="text-lg font-semibold text-[#111618] dark:text-white">Heritage Court Sneaker</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-300">Suede court sneaker with recycled rubber outsole and Ortholite footbed.</p>
+            <p class="text-lg font-bold text-primary">$135.00</p>
+            <div class="flex gap-3">
+              <button type="button" class="flex-1 inline-flex items-center justify-center rounded-full bg-primary text-white text-sm font-semibold py-2 hover:bg-primary/90 transition" data-virtual-cta>Load look</button>
+              <a class="inline-flex items-center justify-center rounded-full border border-gray-300 dark:border-gray-600 px-4 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:border-primary" href="/pages/product" target="_blank" rel="noopener noreferrer">View</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="px-4 sm:px-8 lg:px-16 py-6 border-t border-gray-200 dark:border-gray-700 text-sm text-gray-500 dark:text-gray-400">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p>© 2024 Seira. All rights reserved.</p>
+    <div class="flex gap-4">
+      <a class="hover:text-primary" href="#">Privacy</a>
+      <a class="hover:text-primary" href="#">Terms</a>
+      <a class="hover:text-primary" href="#">Support</a>
+    </div>
+  </div>
+</footer>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const img = document.querySelector('[data-preview-image]');
+  const previewFrame = document.querySelector('[data-preview-frame]');
+  const sizeButtons = document.querySelectorAll('[data-size-option]');
+  const sizeValue = document.querySelector('[data-size-value]');
+  const colorButtons = document.querySelectorAll('[data-color-option]');
+  const colorValue = document.querySelector('[data-color-value]');
+  const virtualCards = Array.from(document.querySelectorAll('[data-virtual-product-card]'));
+  const addPreferredBtn = document.querySelector('[data-add-preferred]');
+  const goToCartBtn = document.querySelector('[data-go-to-cart]');
+
+  let currentSize = sizeValue?.textContent?.trim() || 'M';
+  let currentColorLabel = 'Onyx';
+
+  const slugify = (text = '') =>
+    text
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '') || 'seira-product';
+
+  const extractImageUrl = (styleString = '') => {
+    const match = styleString.match(/url\((['"]?)(.*?)\1\)/i);
+    return match ? match[2] : '';
+  };
+
+  const readSelectedProduct = () => {
+    try {
+      const raw = localStorage.getItem('selectedProduct');
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      return parsed && typeof parsed === 'object' ? parsed : null;
+    } catch (error) {
+      console.warn('Unable to read selected product for preferred look', error);
+      return null;
+    }
+  };
+
+  const writeSelectedProduct = (payload) => {
+    if (!payload) return;
+    try {
+      localStorage.setItem('selectedProduct', JSON.stringify(payload));
+    } catch (error) {
+      console.warn('Unable to store selected product', error);
+    }
+  };
+
+  const applySelectedProductToPreview = (product) => {
+    if (!img || !product) return;
+    const galleryImages = Array.isArray(product.gallery) ? product.gallery : [];
+    const heroSrc = product.image || galleryImages[0];
+    if (heroSrc) {
+      img.src = heroSrc;
+      img.alt = product.title ? `${product.title} 360 preview` : 'Selected product 360 preview';
+    }
+  };
+
+  const buildProductPayload = (card) => {
+    if (!card) return null;
+    const textBlocks = card.querySelectorAll('div > p');
+    const rawName = (card.dataset.productTitle || textBlocks[1]?.textContent || textBlocks[0]?.textContent || '').trim();
+    const rawPrice = (card.dataset.productPrice || card.querySelector('.text-lg.font-bold')?.textContent || '').trim();
+    const descriptionSource =
+      card.dataset.productDescription ||
+      card.querySelector('p.text-sm.text-gray-500, p.text-sm.text-stone-500')?.textContent ||
+      `Discover the ${rawName || 'latest Seira piece'} from our newest drop.`;
+
+    const taggedImage = card.querySelector('[data-product-image]');
+    const imageCandidate =
+      card.dataset.productImage ||
+      taggedImage?.dataset?.productImage ||
+      taggedImage?.getAttribute?.('src') ||
+      card.querySelector('img')?.getAttribute('src');
+
+    let heroImage = imageCandidate;
+    if (!heroImage) {
+      const styledEl = card.querySelector('[style*="background-image"]');
+      if (styledEl) {
+        heroImage = styledEl.dataset?.productImage || extractImageUrl(styledEl.getAttribute('style') || '');
+      }
+    }
+
+    const galleryData = card.dataset.productGallery
+      ? card.dataset.productGallery.split(',').map((item) => item.trim()).filter(Boolean)
+      : [];
+
+    if (!galleryData.length && heroImage) {
+      galleryData.push(heroImage);
+    }
+
+    const slugSource = rawName || card.dataset.productId || 'seira-product';
+    const productId = slugSource
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '') || 'seira-product';
+
+    return {
+      id: productId,
+      title: rawName || 'Seira Exclusive',
+      price: rawPrice || '',
+      description: descriptionSource.trim(),
+      image: heroImage || '',
+      gallery: galleryData,
+    };
+  };
+
+  const highlightSelectedCard = (activeCard) => {
+    virtualCards.forEach((card) => {
+      const isActive = card === activeCard;
+      card.classList.toggle('ring-2', isActive);
+      card.classList.toggle('ring-primary', isActive);
+      card.classList.toggle('shadow-lg', isActive);
+      card.dataset.virtualSelected = isActive ? 'true' : 'false';
+    });
+  };
+
+  const handleProductSelection = (card) => {
+    const payload = buildProductPayload(card);
+    if (!payload) return;
+    writeSelectedProduct(payload);
+    applySelectedProductToPreview(payload);
+    highlightSelectedCard(card);
+  };
+
+  virtualCards.forEach((card) => {
+    card.addEventListener('click', (event) => {
+      if (event.target.closest('a')) return;
+      event.preventDefault();
+      handleProductSelection(card);
+    });
+    card.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        handleProductSelection(card);
+      }
+    });
+    card.querySelectorAll('[data-virtual-cta]').forEach((btn) => {
+      btn.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        handleProductSelection(card);
+      });
+    });
+  });
+
+  const storedProduct = readSelectedProduct();
+  if (storedProduct) {
+    applySelectedProductToPreview(storedProduct);
+    const matchingCard = virtualCards.find(
+      (card) => slugify(card.dataset.productTitle || '') === storedProduct.id
+    );
+    if (matchingCard) {
+      highlightSelectedCard(matchingCard);
+    }
+  } else if (virtualCards.length) {
+    handleProductSelection(virtualCards[0]);
+  }
+
+  const setSize = (value) => {
+    sizeButtons.forEach((btn) => {
+      const isActive = btn.dataset.sizeOption === value;
+      btn.classList.toggle('border-primary', isActive);
+      btn.classList.toggle('bg-primary/10', isActive);
+      btn.classList.toggle('text-primary', isActive);
+      btn.classList.toggle('border-gray-300', !isActive);
+      btn.classList.toggle('dark:border-gray-600', !isActive);
+      btn.setAttribute('aria-pressed', String(isActive));
+    });
+    if (sizeValue) sizeValue.textContent = value;
+    currentSize = value;
+  };
+
+  sizeButtons.forEach((btn) => {
+    btn.addEventListener('click', () => setSize(btn.dataset.sizeOption));
+  });
+
+  const setColor = (hex, label) => {
+    colorButtons.forEach((btn) => {
+      const isActive = btn.dataset.colorOption === hex;
+      btn.setAttribute('aria-pressed', String(isActive));
+      const swatch = btn.querySelector('span:last-child');
+      if (!swatch) return;
+      if (isActive) {
+        swatch.classList.add('border-2', 'border-primary');
+        swatch.classList.remove('border', 'border-gray-300');
+      } else {
+        swatch.classList.remove('border-2', 'border-primary');
+        swatch.classList.add('border', 'border-gray-300');
+      }
+    });
+    if (colorValue) colorValue.textContent = label;
+    currentColorLabel = label;
+    if (previewFrame) {
+      previewFrame.style.boxShadow = `0 0 0 3px ${hex}33`;
+    }
+  };
+
+  colorButtons.forEach((btn) => {
+    btn.addEventListener('click', () => setColor(btn.dataset.colorOption, btn.dataset.colorLabel));
+  });
+
+  setSize(currentSize);
+  const defaultColorBtn = document.querySelector('[data-color-option][aria-pressed="true"]');
+  if (defaultColorBtn) {
+    setColor(defaultColorBtn.dataset.colorOption, defaultColorBtn.dataset.colorLabel);
+  }
+
+  const persistCartItemsFallback = (item) => {
+    try {
+      const CART_ITEMS_KEY = 'cartItems';
+      const parsed = JSON.parse(localStorage.getItem(CART_ITEMS_KEY) || '[]');
+      const items = Array.isArray(parsed) ? parsed : [];
+      const existing = items.find((entry) => entry.key === item.key);
+      if (existing) {
+        existing.quantity += item.quantity;
+      } else {
+        items.push(item);
+      }
+      localStorage.setItem(CART_ITEMS_KEY, JSON.stringify(items));
+    } catch (error) {
+      console.warn('Unable to persist preferred look cart item', error);
+    }
+  };
+
+  if (addPreferredBtn) {
+    addPreferredBtn.addEventListener('click', () => {
+      const baseProduct =
+        readSelectedProduct() || {
+          id: 'virtual-stylist-look',
+          title: 'Virtual Stylist Look',
+          price: '$0.00',
+          image: img?.getAttribute('src') || '',
+          description: 'Curated via Virtual Experience',
+        };
+      const baseId = baseProduct.id || slugify(baseProduct.title || 'virtual-look');
+      const colorTag = currentColorLabel || 'Custom';
+      const computedKey = [baseId, currentSize, colorTag].filter(Boolean).join('__');
+      const priceText = baseProduct.price || baseProduct.priceText || '$0.00';
+      const cartPayload = {
+        id: baseId,
+        key: computedKey,
+        title: baseProduct.title || 'Virtual Stylist Look',
+        priceText,
+        priceValue:
+          window.SeiraCartIndicator?.parsePriceValue(priceText) ??
+          Number(priceText.replace(/[^0-9.]/g, '')) ||
+          0,
+        description: `${baseProduct.description || 'Preferred look'} • Color: ${colorTag} • Size: ${currentSize}`,
+        image: baseProduct.image || img?.getAttribute('src') || '',
+        variant: colorTag,
+        size: currentSize,
+        quantity: 1,
+      };
+
+      if (window.SeiraCartIndicator?.addItem) {
+        window.SeiraCartIndicator.addItem(cartPayload);
+      } else {
+        persistCartItemsFallback(cartPayload);
+      }
+
+      addPreferredBtn.textContent = 'Added!';
+      addPreferredBtn.disabled = true;
+      if (goToCartBtn) {
+        goToCartBtn.classList.remove('hidden');
+      }
+      setTimeout(() => {
+        addPreferredBtn.textContent = 'Add Preferred Look to Cart';
+        addPreferredBtn.disabled = false;
+      }, 2000);
+    });
+  }
+});
+</script>
+<script src="/static/js/cart-indicator.js"></script>
+<script src="/static/js/ai-search-modal.js"></script>
+<script src="/static/js/shop-modal.js"></script>
+<script src="/static/js/simon-modal.js"></script>
+<script src="/static/js/wishlist.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const profileModal = document.getElementById('profile-modal');
+  const toggleProfileModal = (shouldShow) => {
+    if (!profileModal) return;
+    profileModal.classList.toggle('hidden', !shouldShow);
+    document.body.classList.toggle('overflow-hidden', shouldShow);
+  };
+
+  document.querySelectorAll('[data-profile-trigger]').forEach((btn) => {
+    btn.addEventListener('click', () => toggleProfileModal(true));
+  });
+
+  profileModal?.querySelectorAll('[data-profile-close]').forEach((btn) => {
+    btn.addEventListener('click', () => toggleProfileModal(false));
+  });
+});
+</script>
+</body></html>
